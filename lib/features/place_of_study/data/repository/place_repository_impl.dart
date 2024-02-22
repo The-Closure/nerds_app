@@ -15,7 +15,7 @@ class PlaceRepositoryImpl implements PlaceRepository {
   );
 
   @override
-  Future<DataState<List<PlaceModel>>> getplaces() async {
+  Future<DataState<List<PlaceModel>>> getPlaces() async {
     try {
       final httpResponse = await _placeApiService.getPlaces();
 
@@ -34,20 +34,22 @@ class PlaceRepositoryImpl implements PlaceRepository {
   }
 
   @override
-  Future<List<PlaceEntity>> getSavedPlace() {
-    // TODO: implement getSavedPlace
+  Future<DataState<String>> deletPlace({required int id}) {
+    // TODO: implement deletPlace
     throw UnimplementedError();
   }
 
   @override
-  Future<void> removePlace(PlaceEntity place) {
-    // TODO: implement removePlace
+  Future<DataState<PlaceEntity>> postPlace(
+      {required PlaceEntity newPlaceEntity}) {
+    // TODO: implement postPlace
     throw UnimplementedError();
   }
 
   @override
-  Future<void> savePlace(PlaceEntity place) {
-    // TODO: implement savePlace
+  Future<DataState<PlaceEntity>> putPlace(
+      {required int id, required PlaceEntity newPlaceEntity}) {
+    // TODO: implement putPlace
     throw UnimplementedError();
   }
 }

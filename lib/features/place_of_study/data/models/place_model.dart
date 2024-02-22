@@ -14,7 +14,11 @@ class PlaceModel extends PlaceEntity {
       locations: map['locations'] ?? "",
     );
   }
-
+  Map<String, dynamic> toJson(PlaceModel instance) => <String, dynamic>{
+        'id': instance.id,
+        'name': instance.name,
+        'locations': instance.locations,
+      };
   factory PlaceModel.fromEntity(PlaceEntity entity) {
     return PlaceModel(
         id: entity.id, name: entity.name, locations: entity.locations);

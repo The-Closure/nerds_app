@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place_api_service.dart';
+part of 'room_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,33 +8,31 @@ part of 'place_api_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _PlaceApiService implements PlaceApiService {
-  _PlaceApiService(
+class _RoomApiService implements RoomApiService {
+  _RoomApiService(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'http://127.0.0.1:8022/api/v1';
-  }
+  });
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<PlaceModel>>> getPlaces() async {
+  Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<PlaceModel>>>(Options(
+        _setStreamType<HttpResponse<List<RoomModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/places/allplaces',
+              '/Rooms/allRooms',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,22 +42,21 @@ class _PlaceApiService implements PlaceApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => PlaceModel.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => RoomModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<PlaceModel>> postPlace(
-      {required PlaceModel newPlaceModel}) async {
+  Future<HttpResponse<RoomModel>> postPlace(
+      {required RoomModel newRoomModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(newPlaceModel.toJson(newPlaceModel));
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<PlaceModel>>(Options(
+        _setStreamType<HttpResponse<RoomModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -75,22 +72,22 @@ class _PlaceApiService implements PlaceApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = PlaceModel.fromJson(_result.data!);
+    final value = RoomModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<PlaceModel>> putPlace({
+  Future<HttpResponse<RoomModel>> putPlace({
     required int id,
-    required PlaceModel newPlaceModel,
+    required RoomModel newRoomModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<PlaceModel>>(Options(
+        _setStreamType<HttpResponse<RoomModel>>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -106,7 +103,7 @@ class _PlaceApiService implements PlaceApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = PlaceModel.fromJson(_result.data!);
+    final value = RoomModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

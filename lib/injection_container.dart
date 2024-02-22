@@ -1,8 +1,8 @@
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/place_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/repository/place_repository_impl.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/place_repository.dart';
-import 'package:dashbord_cafe/features/place_of_study/domain/usecases/get_places.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/remote/bloc/place_of_cafes_bloc.dart';
+import 'package:dashbord_cafe/features/place_of_study/domain/usecases/places.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 

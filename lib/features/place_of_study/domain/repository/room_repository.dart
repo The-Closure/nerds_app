@@ -3,5 +3,12 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/room_entit
 
 abstract class RoomRepository {
   // API methods
-  Future<DataState<List<RoomEntity>>> getRooms();
+  Future<DataState<List<RoomEntity>>> getRooms({required int idPlace});
+
+  Future<DataState<RoomEntity>> postRooms({required RoomEntity newRoomEntity});
+
+  Future<DataState<RoomEntity>> putRooms(
+      {required int id, required RoomEntity newRoomEntity});
+
+  Future<DataState<String>> deletRooms({required int id});
 }

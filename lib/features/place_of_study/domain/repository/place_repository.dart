@@ -3,12 +3,13 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/place_enti
 
 abstract class PlaceRepository {
   // API methods
-  Future<DataState<List<PlaceEntity>>> getplaces();
+  Future<DataState<List<PlaceEntity>>> getPlaces();
 
-  // Database methods
-  Future<List<PlaceEntity>> getSavedPlace();
+  Future<DataState<PlaceEntity>> postPlace(
+      {required PlaceEntity newPlaceEntity});
 
-  Future<void> savePlace(PlaceEntity place);
+  Future<DataState<PlaceEntity>> putPlace(
+      {required int id, required PlaceEntity newPlaceEntity});
 
-  Future<void> removePlace(PlaceEntity place);
+  Future<DataState<String>> deletPlace({required int id});
 }

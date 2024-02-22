@@ -1,4 +1,4 @@
-package com.example.collage
+package com.example.dashbord_cafe
 
 import io.flutter.embedding.android.FlutterActivity
 
