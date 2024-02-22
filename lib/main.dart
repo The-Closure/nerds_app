@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:reservations/feature/auth/application_details_screen/details_screen.dart';
+import 'package:reservations/feature/auth/login_screen/login_screen.dart';
+import 'package:reservations/feature/auth/registration_method_screen/registration_method_screen.dart';
+import 'package:reservations/feature/auth/sign_up_screen/sign_up_screen.dart';
+import 'package:reservations/feature/auth/splash_screen/splash_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 void main() {
@@ -7,8 +12,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,24 +26,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-            body: SizedBox(
-        width: 200.0,
-        height: 100.0,
-        child: Shimmer.fromColors(
-          baseColor: Colors.red,
-          highlightColor: Colors.yellow,
-          child: Text(
-            'Shimmer',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40.0,
-              fontWeight:
-              FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    );
+    return SignupScreen();
   }
 }
