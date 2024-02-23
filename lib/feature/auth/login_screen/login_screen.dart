@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservations/feature/Room_screens/Meeting_Room/meeting_room_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -13,7 +14,8 @@ class LoginScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 50,),
              TextField(
@@ -90,7 +92,11 @@ class LoginScreen extends StatelessWidget {
                     children: [
                        InkWell(
                   onTap: () {
-                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RoomsDetailsScreen(),
+                      ));
                   },
                   child: Container(
                           decoration: BoxDecoration(

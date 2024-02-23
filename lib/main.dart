@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:reservations/feature/Room_screens/Coffee_Shop/CoffeeShopScreen.dart';
+import 'package:reservations/feature/Room_screens/Meeting_Room/meeting_room_screen.dart';
+import 'package:reservations/feature/Room_screens/Study_Room/study_room_screen.dart';
 import 'package:reservations/feature/auth/application_details_screen/details_screen.dart';
 import 'package:reservations/feature/auth/login_screen/login_screen.dart';
 import 'package:reservations/feature/auth/registration_method_screen/registration_method_screen.dart';
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     
+     debugShowCheckedModeBanner: false,
       home:  MyHomePage(),
     );
   }
@@ -26,6 +29,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignupScreen();
+    return SplashScreen();
   }
 }

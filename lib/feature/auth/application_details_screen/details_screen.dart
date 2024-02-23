@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:reservations/feature/auth/registration_method_screen/registration_method_screen.dart';
 
-PageController controller = PageController();
+PageController controllerDetails = PageController();
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
@@ -9,7 +10,7 @@ class DetailsScreen extends StatelessWidget {
     return 
     PageView(
       physics: NeverScrollableScrollPhysics(),
-      controller: controller,
+      controller: controllerDetails,
       children: const [
       FirstDetailsScreen(),
       SceondDetailsScreen(),
@@ -86,7 +87,7 @@ class _FirstDetailsScreenState extends State<FirstDetailsScreen> {
                 ),
               InkWell(
                 onTap: () {
-                  controller.nextPage(duration: Duration(seconds:1), curve: Curves.easeInCubic );   
+                  controllerDetails.nextPage(duration: Duration(seconds:1), curve: Curves.easeInCubic );   
                       },
                 child: Container(
                   decoration: BoxDecoration(
@@ -114,7 +115,6 @@ class _FirstDetailsScreenState extends State<FirstDetailsScreen> {
 }
 
 
-////////////////////////////////!
 
 
 class SceondDetailsScreen extends StatefulWidget {
@@ -182,7 +182,7 @@ class _SceondDetailsScreenState extends State<SceondDetailsScreen> {
                 ),
               InkWell(
                 onTap: () {
-                  controller.nextPage(duration: Duration(seconds:1), curve: Curves.easeInCubic );   
+                  controllerDetails.nextPage(duration: Duration(seconds:1), curve: Curves.easeInCubic );   
                       },
                 child: Container(
                   decoration: BoxDecoration(
@@ -274,11 +274,10 @@ class _ThirdDetailsScreenState extends State<ThirdDetailsScreen> {
                 ),
               InkWell(
                 onTap: () {
-                  controller.nextPage(duration: Duration(seconds:1), curve: Curves.easeInCubic );   
-                       Navigator.push(
+                 Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailsScreen(),
+                        builder: (context) => RegistrationMethodScreen(),
                       ));
                       },
                 child: Container(

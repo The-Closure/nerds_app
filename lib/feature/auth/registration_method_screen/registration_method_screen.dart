@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:reservations/feature/auth/login_screen/login_screen.dart';
+import 'package:reservations/feature/auth/sign_up_screen/sign_up_screen.dart';
 
 class RegistrationMethodScreen extends StatelessWidget {
   const RegistrationMethodScreen({super.key});
@@ -18,7 +20,11 @@ class RegistrationMethodScreen extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ));
                   },
                   child: Container(
                           decoration: BoxDecoration(
@@ -41,7 +47,11 @@ class RegistrationMethodScreen extends StatelessWidget {
             SizedBox(height: 20),
             InkWell(
               onTap: () {
-                
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignupScreen(),
+                      ));
               },
               child: Container(
                       decoration: BoxDecoration(
