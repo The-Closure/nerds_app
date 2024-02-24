@@ -31,13 +31,7 @@ class ReservationModel extends ReservationEntity {
           : null,
     );
   }
-  Map<String, dynamic> toJson(ReservationModel instance) => <String, dynamic>{
-        'type': instance.type,
-        'time': instance.time,
-        'num_of_seats': instance.num_of_seats,
-        'room_id': instance.room_id,
-        'table_id': instance.table_id
-      };
+
   factory ReservationModel.fromEntity(ReservationEntity entity) {
     return ReservationModel(
         type: entity.type,

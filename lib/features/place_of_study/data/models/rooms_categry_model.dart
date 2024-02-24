@@ -16,11 +16,7 @@ class RoomsCategryModel extends RoomsCategryEntity {
       place_id: map['place_id'] != null ? map['place_id'] as int : null,
     );
   }
-  Map<String, dynamic> toJson(RoomsCategryModel instance) => <String, dynamic>{
-        'id': instance.id,
-        'type': instance.type,
-        'place_id': instance.place_id,
-      };
+
   factory RoomsCategryModel.fromEntity(RoomsCategryEntity entity) {
     return RoomsCategryModel(
         id: entity.id, type: entity.type, place_id: entity.place_id);

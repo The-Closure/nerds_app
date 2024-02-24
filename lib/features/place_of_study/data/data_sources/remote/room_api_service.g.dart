@@ -12,7 +12,9 @@ class _RoomApiService implements RoomApiService {
   _RoomApiService(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://127.0.0.1:8022/api/v1';
+  }
 
   final Dio _dio;
 

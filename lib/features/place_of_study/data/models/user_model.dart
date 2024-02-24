@@ -1,4 +1,6 @@
 // @Entity(tableName: 'User',primaryKeys: ['id'])
+import 'dart:convert';
+
 import 'package:dashbord_cafe/features/place_of_study/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
@@ -33,16 +35,6 @@ class UserModel extends UserEntity {
       role: map['role'] != null ? map['role'] as int : null,
     );
   }
-  Map<String, dynamic> toJson(UserModel instance) => <String, dynamic>{
-        'id': instance.id,
-        'firstName': instance.firstName,
-        'lastName': instance.lastName,
-        'email': instance.email,
-        'address': instance.address,
-        'phone': instance.phone,
-        'password': instance.password,
-        'role': instance.role
-      };
   factory UserModel.fromEntity(UserEntity entity) {
     return UserModel(
         id: entity.id,
@@ -53,5 +45,28 @@ class UserModel extends UserEntity {
         phone: entity.phone,
         password: entity.password,
         role: entity.role);
+  }
+  String toJson() => json.encode({
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'address': address,
+      'phone': phone,
+      'password': password,
+      'role': role,
+    });
+
+   Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'address': address,
+      'phone': phone,
+      'password': password,
+      'role': role,
+    };
   }
 }

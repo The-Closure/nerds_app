@@ -1,5 +1,6 @@
 import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/models/place_model.dart';
+import 'package:dashbord_cafe/features/place_of_study/domain/entities/place_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,13 +13,13 @@ abstract class PlaceApiService {
   @GET('/places/allplaces')
   Future<HttpResponse<List<PlaceModel>>> getPlaces();
 
-  @POST('path')
+  @POST('/places/newplace')
   Future<HttpResponse<PlaceModel>> postPlace(
-      {required PlaceModel newPlaceModel});
+      {@Body() required PlaceEntity newPlaceModel});
 
-  @PUT('path')
+  @PUT('/places/edit/')
   Future<HttpResponse<PlaceModel>> putPlace(
-      {required int id, required PlaceModel newPlaceModel});
-  @DELETE('path')
-  Future<HttpResponse<String>> deletPlace({required int id});
+      {@Header('')required int id, @Body() required PlaceEntity newPlaceModel});
+  @DELETE('/places/delete/')
+  Future<HttpResponse<String>> deletPlace({@Header('')required int id});
 }

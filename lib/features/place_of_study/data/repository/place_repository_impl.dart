@@ -34,22 +34,63 @@ class PlaceRepositoryImpl implements PlaceRepository {
   }
 
   @override
-  Future<DataState<String>> deletPlace({required int id}) {
-    // TODO: implement deletPlace
-    throw UnimplementedError();
-  }
-
-  @override
   Future<DataState<PlaceEntity>> postPlace(
-      {required PlaceEntity newPlaceEntity}) {
-    // TODO: implement postPlace
-    throw UnimplementedError();
+      {required PlaceEntity newPlaceEntity}) async {
+    try {
+      final httpResponse =
+          await _placeApiService.postPlace(newPlaceModel: newPlaceEntity);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
   Future<DataState<PlaceEntity>> putPlace(
-      {required int id, required PlaceEntity newPlaceEntity}) {
-    // TODO: implement putPlace
-    throw UnimplementedError();
+      {required int id, required PlaceEntity newPlaceEntity}) async{
+    try {
+      final httpResponse =
+          await _placeApiService.putPlace(newPlaceModel: newPlaceEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<String>> deletPlace({required int id}) async {
+    try {
+      final httpResponse = await _placeApiService.deletPlace(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'table_api_servece.dart';
+part of 'tables_categry_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'table_api_servece.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TableApiService implements TableApiService {
-  _TableApiService(
+class _TablesCategryApiService implements TablesCategryApiService {
+  _TablesCategryApiService(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,20 +21,20 @@ class _TableApiService implements TableApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<TableModel>>> getTables() async {
+  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<TableModel>>>(Options(
+        _setStreamType<HttpResponse<List<TablesCategryModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/Tables/allTables',
+              '/TablesCategrys/allTablesCategrys',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,21 +44,23 @@ class _TableApiService implements TableApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => TableModel.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            TablesCategryModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<TableModel>> postPlace(
-      {required TableModel newTableModel}) async {
+  Future<HttpResponse<TablesCategryModel>> postPlace(
+      {required TablesCategryModel newTablesCategryModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newTablesCategryModel.toJson(newTablesCategryModel));
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<TableModel>>(Options(
+        _setStreamType<HttpResponse<TablesCategryModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -74,22 +76,22 @@ class _TableApiService implements TableApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = TableModel.fromJson(_result.data!);
+    final value = TablesCategryModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<TableModel>> putPlace({
+  Future<HttpResponse<TablesCategryModel>> putPlace({
     required int id,
-    required TableModel newTableModel,
+    required TablesCategryModel newTablesCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<TableModel>>(Options(
+        _setStreamType<HttpResponse<TablesCategryModel>>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -105,7 +107,7 @@ class _TableApiService implements TableApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = TableModel.fromJson(_result.data!);
+    final value = TablesCategryModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

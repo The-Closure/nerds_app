@@ -2,7 +2,7 @@
 import 'dart:io';
 
 import 'package:dashbord_cafe/core/resources/data_state.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/tables_categry_api_servece.dart';
+import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/tables_categry_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/models/tables_categry_model.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/entities/tables_categry_entity.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/tables_categry_repository.dart';

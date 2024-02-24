@@ -32,14 +32,7 @@ class TableModel extends TableEntity {
       message: map['message'] != null ? map['message'] as String : null,
     );
   }
-  Map<String, dynamic> toJson(TableModel instance) => <String, dynamic>{
-        'id': instance.id,
-        'status': instance.status,
-        'category_id': instance.category_id,
-        'room_id': instance.room_id,
-        'available_seats': instance.available_seats,
-        'message': instance.message
-      };
+
   factory TableModel.fromEntity(TableEntity entity) {
     return TableModel(
         id: entity.id,

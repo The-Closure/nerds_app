@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_model.dart';
 
-part 'reservation_api_servece.g.dart';
+part 'reservation_api_service.g.dart';
 
 @RestApi(baseUrl: aPIBaseURL)
 abstract class ReservationApiService {

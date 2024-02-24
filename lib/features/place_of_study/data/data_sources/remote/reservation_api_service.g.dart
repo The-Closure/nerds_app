@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tables_categry_api_servece.dart';
+part of 'reservation_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'tables_categry_api_servece.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TablesCategryApiService implements TablesCategryApiService {
-  _TablesCategryApiService(
+class _ReservationApiService implements ReservationApiService {
+  _ReservationApiService(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,20 +21,20 @@ class _TablesCategryApiService implements TablesCategryApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys() async {
+  Future<HttpResponse<List<ReservationModel>>> getReservations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<TablesCategryModel>>>(Options(
+        _setStreamType<HttpResponse<List<ReservationModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/TablesCategrys/allTablesCategrys',
+              '/Reservations/allReservations',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,23 +44,22 @@ class _TablesCategryApiService implements TablesCategryApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) =>
-            TablesCategryModel.fromJson(i as Map<String, dynamic>))
+        .map(
+            (dynamic i) => ReservationModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<TablesCategryModel>> postPlace(
-      {required TablesCategryModel newTablesCategryModel}) async {
+  Future<HttpResponse<ReservationModel>> postReservation(
+      {required ReservationModel newReservationModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(newTablesCategryModel.toJson(newTablesCategryModel));
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<TablesCategryModel>>(Options(
+        _setStreamType<HttpResponse<ReservationModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -76,22 +75,22 @@ class _TablesCategryApiService implements TablesCategryApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = TablesCategryModel.fromJson(_result.data!);
+    final value = ReservationModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<TablesCategryModel>> putPlace({
+  Future<HttpResponse<ReservationModel>> putReservation({
     required int id,
-    required TablesCategryModel newTablesCategryModel,
+    required ReservationModel newReservationModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<TablesCategryModel>>(Options(
+        _setStreamType<HttpResponse<ReservationModel>>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -107,13 +106,13 @@ class _TablesCategryApiService implements TablesCategryApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = TablesCategryModel.fromJson(_result.data!);
+    final value = ReservationModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<String>> deletPlace({required int id}) async {
+  Future<HttpResponse<String>> deletReservation({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

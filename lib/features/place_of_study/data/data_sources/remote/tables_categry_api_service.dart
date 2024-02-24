@@ -3,7 +3,7 @@ import 'package:dashbord_cafe/features/place_of_study/data/models/tables_categry
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'tables_categry_api_servece.g.dart';
+part 'tables_categry_api_service.g.dart';
 
 @RestApi(baseUrl: aPIBaseURL)
 abstract class TablesCategryApiService {

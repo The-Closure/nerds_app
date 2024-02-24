@@ -29,13 +29,7 @@ class RoomModel extends RoomEntity {
           map['category_id'] != null ? map['category_id'] as int : null,
     );
   }
-  Map<String, dynamic> toJson(RoomModel instance) => <String, dynamic>{
-        'id': instance.id,
-        'max_num_of_chairs': instance.max_num_of_chairs,
-        'status': instance.status,
-        'placeId': instance.placeId,
-        'category_id': instance.category_id
-      };
+
   factory RoomModel.fromEntity(RoomEntity entity) {
     return RoomModel(
         id: entity.id,

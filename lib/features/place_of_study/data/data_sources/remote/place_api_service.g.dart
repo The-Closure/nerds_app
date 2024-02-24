@@ -52,12 +52,12 @@ class _PlaceApiService implements PlaceApiService {
 
   @override
   Future<HttpResponse<PlaceModel>> postPlace(
-      {required PlaceModel newPlaceModel}) async {
+      {required PlaceEntity newPlaceModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(newPlaceModel.toJson(newPlaceModel));
+    _data.addAll(newPlaceModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<PlaceModel>>(Options(
       method: 'POST',
@@ -66,7 +66,7 @@ class _PlaceApiService implements PlaceApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/places/newplace',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -83,12 +83,14 @@ class _PlaceApiService implements PlaceApiService {
   @override
   Future<HttpResponse<PlaceModel>> putPlace({
     required int id,
-    required PlaceModel newPlaceModel,
+    required PlaceEntity newPlaceModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _headers = <String, dynamic>{r'': id};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(newPlaceModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<PlaceModel>>(Options(
       method: 'PUT',
@@ -97,7 +99,7 @@ class _PlaceApiService implements PlaceApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/places/edit/',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -115,7 +117,8 @@ class _PlaceApiService implements PlaceApiService {
   Future<HttpResponse<String>> deletPlace({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'': id};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result =
         await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
@@ -125,7 +128,7 @@ class _PlaceApiService implements PlaceApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/places/delete/',
               queryParameters: queryParameters,
               data: _data,
             )
