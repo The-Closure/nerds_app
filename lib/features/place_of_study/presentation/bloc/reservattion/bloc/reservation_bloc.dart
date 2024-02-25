@@ -6,13 +6,13 @@ import '../../../../domain/usecases/reservation.dart';
 import 'reservation_event.dart';
 import 'reservation_state.dart';
 
-class ReservationOfCafesBloc extends Bloc<ReservationEvent, ReservationState> {
+class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   final GetReservationUseCase _getReservationUseCase;
   final PostReservationUseCase _postReservationUseCase;
   final PutReservationUseCase _putReservationUseCase;
   final DeletReservationUseCase _deletReservationUseCase;
 
-  ReservationOfCafesBloc(this._getReservationUseCase, this._postReservationUseCase, this._putReservationUseCase, this._deletReservationUseCase) : super(const ReservationsLoadingState()) {
+  ReservationBloc(this._getReservationUseCase, this._postReservationUseCase, this._putReservationUseCase, this._deletReservationUseCase) : super(const ReservationsLoadingState()) {
     on<GetReservations>(onGetReservations);
 
     on<PostReservation>(onPostReservations);

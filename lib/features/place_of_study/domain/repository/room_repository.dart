@@ -5,10 +5,10 @@ abstract class RoomRepository {
   // API methods
   Future<DataState<List<RoomEntity>>> getRooms({required int idPlace});
 
-  Future<DataState<RoomEntity>> postRooms({required RoomEntity newRoomEntity});
+  Future<DataState<RoomEntity>> postRoom({required RoomEntity newRoomEntity});
 
-  Future<DataState<RoomEntity>> putRooms(
+  Future<DataState<RoomEntity>> putRoom(
       {required int id, required RoomEntity newRoomEntity});
 
-  Future<DataState<String>> deletRooms({required int id});
+  Future<DataState<String>> deletRoom({required int id});
 }

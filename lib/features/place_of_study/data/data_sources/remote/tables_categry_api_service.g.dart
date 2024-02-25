@@ -52,13 +52,12 @@ class _TablesCategryApiService implements TablesCategryApiService {
   }
 
   @override
-  Future<HttpResponse<TablesCategryModel>> postPlace(
-      {required TablesCategryModel newTablesCategryModel}) async {
+  Future<HttpResponse<TablesCategryModel>> postTablesCategry(
+      {required TablesCategryEntity newTablesCategryModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(newTablesCategryModel.toJson(newTablesCategryModel));
+    final _data = newTablesCategryModel;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<TablesCategryModel>>(Options(
       method: 'POST',
@@ -82,9 +81,9 @@ class _TablesCategryApiService implements TablesCategryApiService {
   }
 
   @override
-  Future<HttpResponse<TablesCategryModel>> putPlace({
+  Future<HttpResponse<TablesCategryModel>> putTablesCategry({
     required int id,
-    required TablesCategryModel newTablesCategryModel,
+    required TablesCategryEntity newTablesCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -113,7 +112,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletPlace({required int id}) async {
+  Future<HttpResponse<String>> deletTablesCategry({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

@@ -17,7 +17,7 @@ class RoomRepositoryImpl implements RoomRepository {
   @override
   Future<DataState<List<RoomModel>>> getRooms({required int idPlace}) async {
     try {
-      final httpResponse = await _roomApiService.getRooms(idPlace: idPlace);
+      final httpResponse = await _roomApiService.getRooms(idPlace:idPlace );
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -34,21 +34,63 @@ class RoomRepositoryImpl implements RoomRepository {
   }
 
   @override
-  Future<DataState<String>> deletRooms({required int id}) {
-    // TODO: implement deletRooms
-    throw UnimplementedError();
+  Future<DataState<RoomEntity>> postRoom(
+      {required RoomEntity newRoomEntity}) async {
+    try {
+      final httpResponse =
+          await _roomApiService.postRoom(newRoomModel: newRoomEntity);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<RoomEntity>> postRooms({required RoomEntity newRoomEntity}) {
-    // TODO: implement postRooms
-    throw UnimplementedError();
+  Future<DataState<RoomEntity>> putRoom(
+      {required int id, required RoomEntity newRoomEntity}) async{
+    try {
+      final httpResponse =
+          await _roomApiService.putRoom(newRoomModel: newRoomEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<RoomEntity>> putRooms(
-      {required int id, required RoomEntity newRoomEntity}) {
-    // TODO: implement putRooms
-    throw UnimplementedError();
+  Future<DataState<String>> deletRoom({required int id}) async {
+    try {
+      final httpResponse = await _roomApiService.deletRoom(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }

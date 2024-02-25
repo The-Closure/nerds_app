@@ -3,10 +3,19 @@
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_bloc.dart';
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_state.dart';
 import 'package:dashbord_cafe/core/constants/constants.dart';
+import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_model.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_bloc.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_event.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_state.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/pages/place_cafes.dart';
+import 'package:dashbord_cafe/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+
+import 'page_coffe_shop.dart';
+import 'page_events.dart';
+import 'page_study_room.dart';
 
 int selectedIndex = 0;
 
@@ -147,12 +156,16 @@ class _BasepageState extends State<Basepage> {
             NavigationDestination(icon: Icon(Icons.home), label: 'HomePage'),
             NavigationDestination(
                 icon: Icon(Icons.favorite), label: 'favorite'),
+            NavigationDestination(
+                icon: Icon(Icons.notifications_none_sharp),
+                label: 'notifications'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'profaile'),
           ],
         ));
   }
 }
 
-List<Widget> pages = [Home(), Scaffold(), Scaffold()];
+List<Widget> pages = [Home(), Scaffold(), Scaffold(), Scaffold()];
 String value = '';
 
 class Home extends StatefulWidget {
@@ -168,58 +181,95 @@ Color red = Colors.red;
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      // animationDuration: Duration(seconds: 4),
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 100,
-          // centerTitle: true,
-          // leading: Container(),
-          title: Text(
-            'Welcome to COSEL',
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
+    return BlocProvider(
+      create: (context) => sl<ReservationBloc>()..add(GetReservations()),
+      child: DefaultTabController(
+        // animationDuration: Duration(seconds: 4),
+        length: 4,
+        child: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 100,
+              // centerTitle: true,
+              // leading: Container(),
+              title: Text(
+                'Welcome to COSEL',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              bottom: TabBar.secondary(
+                enableFeedback: true,
+                padding: EdgeInsets.all(10),
+                indicator: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Color.fromARGB(45, 141, 153, 187),
+                    const Color.fromARGB(255, 238, 106, 106)
+                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1,
+                  ),
+                  // color: Colors.redAccent,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                // automaticIndicatorColorAdjustment: true,
+                splashBorderRadius: BorderRadius.all(Radius.circular(100)),
+                // tabAlignment: TabAlignment.start,
+                unselectedLabelColor: red,
+                labelColor: white,
+                indicatorColor: null,
+                dividerColor: null,
+                // controller: TabController(length: 3, vsync: this),
+                tabs: [
+                  Tab(
+                      icon: Icon(Icons.groups_sharp),
+                      height: 100,
+                      child: Text('Meeting Room')),
+                  Tab(
+                      icon: Icon(Icons.video_camera_front),
+                      height: 100,
+                      child: Text('coffe Shop')),
+                  Tab(
+                      icon: Icon(Icons.roller_shades_closed_outlined),
+                      height: 100,
+                      child: Text('Study Room')),
+                  Tab(
+                      icon: Icon(Icons.event_available_outlined),
+                      height: 100,
+                      child: Text('Events')),
+                ],
+              ),
             ),
-          ),
-          bottom: TabBar.secondary(
-            enableFeedback: true,
-            padding: EdgeInsets.all(10),
-            indicator: BoxDecoration(
-              color: Colors.redAccent,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            // automaticIndicatorColorAdjustment: true,
-            splashBorderRadius: BorderRadius.all(Radius.circular(100)),
-            // tabAlignment: TabAlignment.start,
-            unselectedLabelColor: red,
-            labelColor: white,
-            indicatorColor: Colors.blueGrey,
-            dividerColor: Colors.blueGrey,
-            // controller: TabController(length: 3, vsync: this),
-            tabs: [
-              Tab(
-                  icon: Icon(Icons.people_alt),
-                  height: 100,
-                  child: Text('Meeting Room')),
-              Tab(
-                  icon: Icon(Icons.people_alt),
-                  height: 100,
-                  child: Text('coffe Shop')),
-              Tab(
-                  icon: Icon(Icons.people_alt),
-                  height: 100,
-                  child: Text('Study Room')),
-              Tab(
-                  icon: Icon(Icons.people_alt),
-                  height: 100,
-                  child: Text('Events')),
-            ],
-          ),
-        ),
-        body: TabBarView(
-            children: [PlaceCafes(), PlaceCafes(), PlaceCafes(), PlaceCafes()]),
+            body: TabBarView(children: [
+              PlaceCafes(),
+              PageCoffeShop(),
+              PageStudyRoom(),
+              PageEvents()
+            ]),
+            floatingActionButton:
+                BlocBuilder<ReservationBloc, ReservationState>(
+              builder: (context, state) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      context.read<ReservationBloc>().add(PostReservation(
+                          reservationEntity: ReservationModel()));
+                    },
+                    child: Container(
+                      width: 400,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.pink,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(child: Text('Book now')),
+                    ),
+                  ),
+                );
+              },
+            )),
       ),
     );
   }

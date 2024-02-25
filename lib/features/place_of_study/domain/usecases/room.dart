@@ -21,7 +21,7 @@ class PostRoomUseCase implements UseCase<DataState<RoomEntity>, RoomEntity> {
 
   @override
   Future<DataState<RoomEntity>> call({RoomEntity? params}) {
-    return _roomRepository.postRooms(newRoomEntity: params!);
+    return _roomRepository.postRoom(newRoomEntity: params!);
   }
 }
 
@@ -32,7 +32,7 @@ class PutRoomUseCase implements UseCase<DataState<RoomEntity>, RoomEntity> {
 
   @override
   Future<DataState<RoomEntity>> call({RoomEntity? params, int? id}) {
-    return _roomRepository.putRooms(newRoomEntity: params!, id: id!);
+    return _roomRepository.putRoom(newRoomEntity: params!, id: id!);
   }
 }
 
@@ -43,6 +43,6 @@ class DeletRoomUseCase implements UseCase<DataState<String>, int> {
 
   @override
   Future<DataState<String>> call({int? params}) {
-    return _roomRepository.deletRooms(id: params!);
+    return _roomRepository.deletRoom(id: params!);
   }
 }

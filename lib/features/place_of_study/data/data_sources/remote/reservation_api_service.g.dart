@@ -34,7 +34,7 @@ class _ReservationApiService implements ReservationApiService {
     )
             .compose(
               _dio.options,
-              '/Reservations/allReservations',
+              '/reservation/getAll',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -53,7 +53,7 @@ class _ReservationApiService implements ReservationApiService {
 
   @override
   Future<HttpResponse<ReservationModel>> postReservation(
-      {required ReservationModel newReservationModel}) async {
+      {required ReservationEntity newReservationModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -83,7 +83,7 @@ class _ReservationApiService implements ReservationApiService {
   @override
   Future<HttpResponse<ReservationModel>> putReservation({
     required int id,
-    required ReservationModel newReservationModel,
+    required ReservationEntity newReservationModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

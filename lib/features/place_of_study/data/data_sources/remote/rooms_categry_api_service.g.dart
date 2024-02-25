@@ -52,8 +52,8 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   }
 
   @override
-  Future<HttpResponse<RoomsCategryModel>> postPlace(
-      {required RoomsCategryModel newRoomsCategryModel}) async {
+  Future<HttpResponse<RoomsCategryModel>> postRoomsCategry(
+      {required RoomsCategryEntity newRoomsCategryModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -81,9 +81,9 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   }
 
   @override
-  Future<HttpResponse<RoomsCategryModel>> putPlace({
+  Future<HttpResponse<RoomsCategryModel>> putRoomsCategry({
     required int id,
-    required RoomsCategryModel newRoomsCategryModel,
+    required RoomsCategryEntity newRoomsCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -112,7 +112,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletPlace({required int id}) async {
+  Future<HttpResponse<String>> deletRoomsCategry({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

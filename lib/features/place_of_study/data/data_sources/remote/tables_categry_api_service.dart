@@ -1,5 +1,6 @@
 import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/models/tables_categry_model.dart';
+import 'package:dashbord_cafe/features/place_of_study/domain/entities/tables_categry_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,12 +13,12 @@ abstract class TablesCategryApiService {
   @GET('/TablesCategrys/allTablesCategrys')
   Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys();
   @POST('path')
-  Future<HttpResponse<TablesCategryModel>> postPlace(
-      {@Body() required TablesCategryModel newTablesCategryModel});
+  Future<HttpResponse<TablesCategryModel>> postTablesCategry(
+      {@Body() required TablesCategryEntity newTablesCategryModel});
 
   @PUT('path')
-  Future<HttpResponse<TablesCategryModel>> putPlace(
-      {required int id, required TablesCategryModel newTablesCategryModel});
+  Future<HttpResponse<TablesCategryModel>> putTablesCategry(
+      {required int id, required TablesCategryEntity newTablesCategryModel});
   @DELETE('path')
-  Future<HttpResponse<String>> deletPlace({required int id});
+  Future<HttpResponse<String>> deletTablesCategry({required int id});
 }

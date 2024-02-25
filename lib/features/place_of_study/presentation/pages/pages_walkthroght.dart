@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables,, sized_box_for_whitespace, sort_child_properties_last, use_key_in_widget_constructors
 // sized_box_for_whitespace, sort_child_properties_last, use_key_in_widget_constructors, unused_label
 import 'package:flutter/material.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page1.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page2.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page3.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_walkthroght_1.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_walkthroght_2.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_walkthroght_3.dart';
 
 // void main() {
 //   runApp(MyApp());

@@ -21,10 +21,12 @@ class _TableApiService implements TableApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<TableModel>>> getTables() async {
+  Future<HttpResponse<List<TableModel>>> getTables(
+      {required int idRoom}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'': idRoom};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<TableModel>>>(Options(
@@ -51,8 +53,8 @@ class _TableApiService implements TableApiService {
   }
 
   @override
-  Future<HttpResponse<TableModel>> postPlace(
-      {required TableModel newTableModel}) async {
+  Future<HttpResponse<TableModel>> postTable(
+      {required TableEntity newTableModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -80,9 +82,9 @@ class _TableApiService implements TableApiService {
   }
 
   @override
-  Future<HttpResponse<TableModel>> putPlace({
+  Future<HttpResponse<TableModel>> putTable({
     required int id,
-    required TableModel newTableModel,
+    required TableEntity newTableModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -111,7 +113,7 @@ class _TableApiService implements TableApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletPlace({required int id}) async {
+  Future<HttpResponse<String>> deletTable({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

@@ -1,5 +1,6 @@
 import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/models/room_model.dart';
+import 'package:dashbord_cafe/features/place_of_study/domain/entities/room_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,12 +14,12 @@ abstract class RoomApiService {
   Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace});
 
   @POST('path')
-  Future<HttpResponse<RoomModel>> postPlace({required RoomModel newRoomModel});
+  Future<HttpResponse<RoomModel>> postRoom({required RoomEntity newRoomModel});
 
   @PUT('path')
-  Future<HttpResponse<RoomModel>> putPlace(
-      {required int id, required RoomModel newRoomModel});
+  Future<HttpResponse<RoomModel>> putRoom(
+      {required int id, required RoomEntity newRoomModel});
 
   @DELETE('path')
-  Future<HttpResponse<String>> deletPlace({required int id});
+  Future<HttpResponse<String>> deletRoom({required int id});
 }

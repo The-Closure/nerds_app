@@ -15,8 +15,7 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
   );
 
   @override
-  Future<DataState<List<RoomsCategryModel>>> getRoomsCategrys(
-      {required int idPlace}) async {
+  Future<DataState<List<RoomsCategryModel>>> getRoomsCategrys({required int idPlace}) async {
     try {
       final httpResponse = await _roomsCategryApiService.getRoomsCategrys();
 
@@ -35,22 +34,63 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
   }
 
   @override
-  Future<DataState<String>> deletRoomsCategry({required int id}) {
-    // TODO: implement deletRoomsCategry
-    throw UnimplementedError();
-  }
+  Future<DataState<RoomsCategryModel>> postRoomsCategry(
+      {required RoomsCategryEntity newRoomsCategryEntity}) async {
+    try {
+      final httpResponse =
+          await _roomsCategryApiService.postRoomsCategry(newRoomsCategryModel: newRoomsCategryEntity);
 
-  @override
-  Future<DataState<RoomsCategryEntity>> postRoomsCategry(
-      {required RoomsCategryEntity newRoomsCategryEntity}) {
-    // TODO: implement postRoomsCategry
-    throw UnimplementedError();
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
   Future<DataState<RoomsCategryEntity>> putRoomsCategry(
-      {required int id, required RoomsCategryEntity newRoomsCategryEntity}) {
-    // TODO: implement putRoomsCategry
-    throw UnimplementedError();
+      {required int id, required RoomsCategryEntity newRoomsCategryEntity}) async{
+    try {
+      final httpResponse =
+          await _roomsCategryApiService.putRoomsCategry(newRoomsCategryModel: newRoomsCategryEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<String>> deletRoomsCategry({required int id}) async {
+    try {
+      final httpResponse = await _roomsCategryApiService.deletRoomsCategry(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }

@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:dashbord_cafe/config/theme/bloc/theme_app_bloc.dart';
-import 'package:dashbord_cafe/config/theme/bloc/theme_app_state.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/models/place_model.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_event.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_state.dart';
@@ -10,7 +7,6 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/widgets/place
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class PlaceCafes extends StatelessWidget {
   const PlaceCafes({Key? key}) : super(key: key);
@@ -20,17 +16,7 @@ class PlaceCafes extends StatelessWidget {
     return Scaffold(
         appBar: _buildAppbar(context),
         body: _buildBody(),
-        floatingActionButton: BlocBuilder<PlaceOfCafesBloc, PlaceOfCafesState>(
-          builder: (context, state) {
-            return FloatingActionButton(onPressed: () {
-              context.read<PlaceOfCafesBloc>().add(PostPlace(
-                      placeEntity: PlaceModel(
-                    name: 'name',
-                    locations: const ['acs', 'acwac0'],
-                  )));
-            });
-          },
-        ));
+       );
   }
 
   _buildAppbar(BuildContext context) {
@@ -56,17 +42,15 @@ class PlaceCafes extends StatelessWidget {
       builder: (_, state) {
         if (state is PlacesLoadingState) {
           return const Center(child: CupertinoActivityIndicator());
-        }else
-        if (state is PlacesErrorState) {
-          return  Center(child: Builder(
-            builder: (context) {
-              return InkWell(onTap:(){
+        } else if (state is PlacesErrorState) {
+          return Center(child: Builder(builder: (context) {
+            return InkWell(
+                onTap: () {
                   context.read<PlaceOfCafesBloc>().add(GetPlaces());
-              },child: Icon(Icons.refresh));
-            }
-          ));
-        }else
-        if (state is PlacesDoneState) {
+                },
+                child: Icon(Icons.refresh));
+          }));
+        } else if (state is PlacesDoneState) {
           return ListView.builder(
             itemBuilder: (context, index) {
               return PlaceWidject(
@@ -76,20 +60,49 @@ class PlaceCafes extends StatelessWidget {
             },
             itemCount: state.places!.length,
           );
-        }else
-        if (state is PostPlacesDoneState) {return Center(child: Builder(
-            builder: (context) {
-              return InkWell(onTap:(){
+        } else if (state is PostPlacesDoneState) {
+          return Center(child: Builder(builder: (context) {
+            return InkWell(
+                onTap: () {
                   context.read<PlaceOfCafesBloc>().add(GetPlaces());
-              },child: Icon(Icons.refresh));
-            }
-          ));
+                },
+                child: Icon(Icons.refresh));
+          }));
         }
         return Center(child: Text(state.toString()));
       },
     );
   }
+//  floatingActionButton: BlocBuilder<PlaceOfCafesBloc, PlaceOfCafesState>(
+        //   builder: (context, state) {
+        //     return Padding(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: InkWell(
+        //         onTap: () {
+        //           context.read<PlaceOfCafesBloc>().add(PostPlace(
+        //                   placeEntity: PlaceModel(
+        //                 name: 'name',
+        //                 locations: const ['acs', 'acwac0'],
+        //               )));
+        //         },
+        //         child: Container(
+        //           width: 400,
+        //           height: 50,
+        //           decoration: BoxDecoration(
+        //             color: Colors.pink,
+        //             borderRadius: BorderRadius.circular(20),
+        //           ),
+        //           child: Center(child: Text('Book now')),
+        //           // width: 100,
+        //           // shape: LinearBorder(),
+        //           // onPressed: () {
 
+        //           // }
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // )
   // void _onArticlePressed(BuildContext context, PlaceEntity placse) {
   //   Navigator.pushNamed(context, '/ArticleDetails', arguments: placse);
   // }

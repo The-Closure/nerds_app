@@ -1,3 +1,4 @@
+import 'package:dashbord_cafe/features/place_of_study/domain/entities/reservation_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -10,16 +11,16 @@ part 'reservation_api_service.g.dart';
 abstract class ReservationApiService {
   factory ReservationApiService(Dio dio) = _ReservationApiService;
 
-  @GET('/Reservations/allReservations')
+  @GET('/reservation/getAll')
   Future<HttpResponse<List<ReservationModel>>> getReservations();
 
   @POST('path')
   Future<HttpResponse<ReservationModel>> postReservation(
-      {required ReservationModel newReservationModel});
+      {required ReservationEntity newReservationModel});
 
   @PUT('path')
   Future<HttpResponse<ReservationModel>> putReservation(
-      {required int id, required ReservationModel newReservationModel});
+      {required int id, required ReservationEntity newReservationModel});
 
   @DELETE('path')
   Future<HttpResponse<String>> deletReservation({required int id});

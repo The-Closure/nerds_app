@@ -23,7 +23,7 @@ class PostReservationUseCase
 
   @override
   Future<DataState<ReservationEntity>> call({ReservationEntity? params}) {
-    return _reservationRepository.postReservations(
+    return _reservationRepository.postReservation(
         newReservationEntity: params!);
   }
 }
@@ -37,7 +37,7 @@ class PutReservationUseCase
   @override
   Future<DataState<ReservationEntity>> call(
       {ReservationEntity? params, int? id}) {
-    return _reservationRepository.putReservations(
+    return _reservationRepository.putReservation(
         newReservationEntity: params!, id: id!);
   }
 }
@@ -49,6 +49,6 @@ class DeletReservationUseCase implements UseCase<DataState<String>, int> {
 
   @override
   Future<DataState<String>> call({int? params}) {
-    return _reservationRepository.deletReservations(id: params!);
+    return _reservationRepository.deletReservation(id: params!);
   }
 }

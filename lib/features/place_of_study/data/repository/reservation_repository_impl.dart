@@ -34,22 +34,63 @@ class ReservationRepositoryImpl implements ReservationRepository {
   }
 
   @override
-  Future<DataState<String>> deletReservations({required int id}) {
-    // TODO: implement deletReservations
-    throw UnimplementedError();
+  Future<DataState<ReservationEntity>> postReservation(
+      {required ReservationEntity newReservationEntity}) async {
+    try {
+      final httpResponse =
+          await _reservationApiService.postReservation(newReservationModel: newReservationEntity);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<ReservationEntity>> postReservations(
-      {required ReservationEntity newReservationEntity}) {
-    // TODO: implement postReservations
-    throw UnimplementedError();
+  Future<DataState<ReservationEntity>> putReservation(
+      {required int id, required ReservationEntity newReservationEntity}) async{
+    try {
+      final httpResponse =
+          await _reservationApiService.putReservation(newReservationModel: newReservationEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<ReservationEntity>> putReservations(
-      {required int id, required ReservationEntity newReservationEntity}) {
-    // TODO: implement putReservations
-    throw UnimplementedError();
+  Future<DataState<String>> deletReservation({required int id}) async {
+    try {
+      final httpResponse = await _reservationApiService.deletReservation(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }

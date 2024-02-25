@@ -34,22 +34,63 @@ class TablesCategryRepositoryImpl implements TablesCategryRepository {
   }
 
   @override
-  Future<DataState<String>> deletTablesCategry({required int id}) {
-    // TODO: implement deletTablesCategry
-    throw UnimplementedError();
+  Future<DataState<TablesCategryModel>> postTablesCategry(
+      {required TablesCategryEntity newTablesCategryEntity}) async {
+    try {
+      final httpResponse =
+          await _tablesCategryApiService.postTablesCategry(newTablesCategryModel: newTablesCategryEntity);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<TablesCategryEntity>> postTablesCategry(
-      {required TablesCategryEntity newTablesCategryEntity}) {
-    // TODO: implement postTablesCategry
-    throw UnimplementedError();
+  Future<DataState<TablesCategryModel>> putTablesCategry(
+      {required int id, required TablesCategryEntity newTablesCategryEntity}) async{
+    try {
+      final httpResponse =
+          await _tablesCategryApiService.putTablesCategry(newTablesCategryModel: newTablesCategryEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<TablesCategryEntity>> putTablesCategry(
-      {required int id, required TablesCategryEntity newTablesCategryEntity}) {
-    // TODO: implement putTablesCategry
-    throw UnimplementedError();
+  Future<DataState<String>> deletTablesCategry({required int id}) async {
+    try {
+      final httpResponse = await _tablesCategryApiService.deletTablesCategry(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }

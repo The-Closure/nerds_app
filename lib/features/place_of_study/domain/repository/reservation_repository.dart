@@ -5,11 +5,11 @@ abstract class ReservationRepository {
   // API methods
   Future<DataState<List<ReservationEntity>>> getReservations();
 
-  Future<DataState<ReservationEntity>> postReservations(
+  Future<DataState<ReservationEntity>> postReservation(
       {required ReservationEntity newReservationEntity});
 
-  Future<DataState<ReservationEntity>> putReservations(
+  Future<DataState<ReservationEntity>> putReservation(
       {required int id, required ReservationEntity newReservationEntity});
 
-  Future<DataState<String>> deletReservations({required int id});
+  Future<DataState<String>> deletReservation({required int id});
 }

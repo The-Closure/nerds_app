@@ -52,7 +52,7 @@ class _UserApiService implements UserApiService {
 
   @override
   Future<HttpResponse<UserModel>> postUser(
-      {required UserModel newUserModel}) async {
+      {required UserEntity newUserModel}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -82,7 +82,7 @@ class _UserApiService implements UserApiService {
   @override
   Future<HttpResponse<UserModel>> putUser({
     required int id,
-    required UserModel newUserModel,
+    required UserEntity newUserModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

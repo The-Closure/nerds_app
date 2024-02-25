@@ -34,22 +34,63 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<DataState<String>> deletUser({required int id}) {
-    // TODO: implement deletUser
-    throw UnimplementedError();
+  Future<DataState<UserModel>> postUser(
+      {required UserEntity newUserEntity}) async {
+    try {
+      final httpResponse =
+          await _userApiService.postUser(newUserModel: newUserEntity);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<UserEntity>> postUser(
-      {required UserEntity newUserEntity}) {
-    // TODO: implement postUser
-    throw UnimplementedError();
+  Future<DataState<UserModel>> putUser(
+      {required int id, required UserEntity newUserEntity}) async{
+    try {
+      final httpResponse =
+          await _userApiService.putUser(newUserModel: newUserEntity, id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
-  Future<DataState<UserEntity>> putUser(
-      {required int id, required UserEntity newUserEntity}) {
-    // TODO: implement putUser
-    throw UnimplementedError();
+  Future<DataState<String>> deletUser({required int id}) async {
+    try {
+      final httpResponse = await _userApiService.deletUser(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data );
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
   }
 }
