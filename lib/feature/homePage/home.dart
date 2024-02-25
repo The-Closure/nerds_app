@@ -1,6 +1,9 @@
 import 'package:dashbord_cafe/core/config/bloc_integration.dart';
 import 'package:dashbord_cafe/core/resources/colors.dart';
-import 'package:dashbord_cafe/feature/order/place/place_bloc.dart';
+import 'package:dashbord_cafe/feature/homePage/home_info.dart';
+import 'package:dashbord_cafe/feature/homePage/place_bloc/place_bloc.dart';
+import 'package:dashbord_cafe/feature/reservations/reservations.dart';
+import 'package:dashbord_cafe/feature/homePage/rooms/room_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,13 +31,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-List<Widget> pages = [
-  Scaffold(),
-  Scaffold(
-    backgroundColor: Color.fromRGBO(248, 246, 255, 1),
-  ),
-  Scaffold()
-];
+List<Widget> pages = [Reservations(), HomeInfo(), RoomCategory()];
 int selectedIndix = 1;
 
 class InfoPage extends StatelessWidget {
@@ -59,7 +56,7 @@ class InfoPage extends StatelessWidget {
           return Scaffold(
             body: pages[selectedIndix],
             bottomNavigationBar: NavigationBar(
-              animationDuration: Duration(seconds: 2),
+              animationDuration: Duration(seconds: 3),
               elevation: 50,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               indicatorColor: lightBlue,
