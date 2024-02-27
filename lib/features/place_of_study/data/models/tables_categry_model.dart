@@ -18,11 +18,7 @@ class TablesCategryModel extends TablesCategryEntity {
       shape: map['shape'] != null ? map['shape'] as String : null,
     );
   }
-  Map<String, dynamic> toJson(TablesCategryModel instance) => <String, dynamic>{
-        'id': instance.id,
-        'num_of_seats': instance.num_of_seats,
-        'shape': instance.shape
-      };
+
   factory TablesCategryModel.fromEntity(TablesCategryEntity entity) {
     return TablesCategryModel(
         id: entity.id, num_of_seats: entity.num_of_seats, shape: entity.shape);

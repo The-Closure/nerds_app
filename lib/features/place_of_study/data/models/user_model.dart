@@ -1,5 +1,5 @@
 // @Entity(tableName: 'User',primaryKeys: ['id'])
-import 'dart:convert';
+
 
 import 'package:dashbord_cafe/features/place_of_study/domain/entities/user_entity.dart';
 
@@ -46,27 +46,5 @@ class UserModel extends UserEntity {
         password: entity.password,
         role: entity.role);
   }
-  String toJson() => json.encode({
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'address': address,
-      'phone': phone,
-      'password': password,
-      'role': role,
-    });
 
-   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'address': address,
-      'phone': phone,
-      'password': password,
-      'role': role,
-    };
-  }
 }

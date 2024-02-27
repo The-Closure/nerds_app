@@ -5,6 +5,7 @@ import 'package:dashbord_cafe/config/theme/bloc/theme_app_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_event.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/pages/base_Page.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: state,
-              home: Basepage());
+              // home: Basepage()
+              home:PageSplash(),
+              );
         },
       ),
     );

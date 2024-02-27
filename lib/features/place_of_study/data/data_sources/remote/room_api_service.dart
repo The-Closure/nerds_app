@@ -11,15 +11,15 @@ abstract class RoomApiService {
   factory RoomApiService(Dio dio) = _RoomApiService;
 
   @GET('/Rooms/allRooms')
-  Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace});
+  Future<HttpResponse<List<RoomModel>>> getRooms({@Header('') required int idPlace});
 
   @POST('path')
-  Future<HttpResponse<RoomModel>> postRoom({required RoomEntity newRoomModel});
+  Future<HttpResponse<RoomModel>> postRoom({@Body() required RoomEntity newRoomModel});
 
   @PUT('path')
   Future<HttpResponse<RoomModel>> putRoom(
-      {required int id, required RoomEntity newRoomModel});
+      {@Query('') required int id,@Body() required RoomEntity newRoomModel});
 
   @DELETE('path')
-  Future<HttpResponse<String>> deletRoom({required int id});
+  Future<HttpResponse<String>> deletRoom({@Query('') required int id});
 }

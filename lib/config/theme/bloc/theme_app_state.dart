@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData() {
  
-    return ThemeData(
+    return ThemeData( 
+      textTheme: TextTheme()
     );
 }
 ThemeData darkThemeData() {

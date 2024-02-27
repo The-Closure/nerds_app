@@ -56,7 +56,8 @@ class _UserApiService implements UserApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newUserModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<UserModel>>(Options(
       method: 'POST',
@@ -85,9 +86,10 @@ class _UserApiService implements UserApiService {
     required UserEntity newUserModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newUserModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<UserModel>>(Options(
       method: 'PUT',
@@ -113,7 +115,7 @@ class _UserApiService implements UserApiService {
   @override
   Future<HttpResponse<String>> deletUser({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

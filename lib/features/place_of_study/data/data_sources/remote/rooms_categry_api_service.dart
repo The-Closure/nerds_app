@@ -18,7 +18,7 @@ abstract class RoomsCategryApiService {
 
   @PUT('path')
   Future<HttpResponse<RoomsCategryModel>> putRoomsCategry(
-      {required int id, required RoomsCategryEntity newRoomsCategryModel});
+      {@Query('') required int id,@Body() required RoomsCategryEntity newRoomsCategryModel});
   @DELETE('path')
-  Future<HttpResponse<String>> deletRoomsCategry({required int id});
+  Future<HttpResponse<String>> deletRoomsCategry({@Query('') required int id});
 }

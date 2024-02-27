@@ -28,8 +28,4 @@ class PlaceEntity extends Equatable {
       map['locations'] != null ? List<dynamic>.from((map['locations'] as List<dynamic>)) : null,
     );
   }
-
-  // String toJson() => json.encode(toMap());
-
-  // factory PlaceEntity.fromJson(String source) => PlaceEntity.fromMap(json.decode(source) as Map<String, dynamic>);
 }

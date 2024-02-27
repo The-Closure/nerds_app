@@ -16,12 +16,12 @@ abstract class ReservationApiService {
 
   @POST('path')
   Future<HttpResponse<ReservationModel>> postReservation(
-      {required ReservationEntity newReservationModel});
+      {@Body() required ReservationEntity newReservationModel});
 
   @PUT('path')
   Future<HttpResponse<ReservationModel>> putReservation(
-      {required int id, required ReservationEntity newReservationModel});
+      {@Query('') required int id,@Body() required ReservationEntity newReservationModel});
 
   @DELETE('path')
-  Future<HttpResponse<String>> deletReservation({required int id});
+  Future<HttpResponse<String>> deletReservation({@Query('') required int id});
 }

@@ -57,7 +57,8 @@ class _TablesCategryApiService implements TablesCategryApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = newTablesCategryModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(newTablesCategryModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<TablesCategryModel>>(Options(
       method: 'POST',
@@ -86,9 +87,10 @@ class _TablesCategryApiService implements TablesCategryApiService {
     required TablesCategryEntity newTablesCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newTablesCategryModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<TablesCategryModel>>(Options(
       method: 'PUT',
@@ -116,7 +118,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = id;
     final _result =
         await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
       method: 'DELETE',

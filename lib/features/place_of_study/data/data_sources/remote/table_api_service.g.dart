@@ -58,7 +58,8 @@ class _TableApiService implements TableApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newTableModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<TableModel>>(Options(
       method: 'POST',
@@ -87,9 +88,10 @@ class _TableApiService implements TableApiService {
     required TableEntity newTableModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newTableModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<TableModel>>(Options(
       method: 'PUT',
@@ -115,7 +117,7 @@ class _TableApiService implements TableApiService {
   @override
   Future<HttpResponse<String>> deletTable({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

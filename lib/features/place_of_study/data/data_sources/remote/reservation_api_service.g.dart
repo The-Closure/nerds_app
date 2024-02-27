@@ -57,7 +57,8 @@ class _ReservationApiService implements ReservationApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newReservationModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ReservationModel>>(Options(
       method: 'POST',
@@ -86,9 +87,10 @@ class _ReservationApiService implements ReservationApiService {
     required ReservationEntity newReservationModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newReservationModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ReservationModel>>(Options(
       method: 'PUT',
@@ -114,7 +116,7 @@ class _ReservationApiService implements ReservationApiService {
   @override
   Future<HttpResponse<String>> deletReservation({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

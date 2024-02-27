@@ -7,10 +7,12 @@ import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_mo
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_event.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_state.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_meeting_room.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/pages/place_cafes.dart';
 import 'package:dashbord_cafe/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'page_coffe_shop.dart';
@@ -32,112 +34,6 @@ class _BasepageState extends State<Basepage> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: AppBar(
-          actions: [],
-          centerTitle: true,
-          elevation: 0,
-        ),
-        drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: ListView(children: [
-              Row(
-                children: [
-                  Container(
-                    width: 60,
-                    height: 60,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(60),
-                        child: CircleAvatar(
-                          child: Icon(
-                            Icons.person,
-                            size: 40,
-                          ),
-                        )),
-                  ),
-                  Expanded(
-                      child: ListTile(
-                    title: Text(
-                      ' userModel.name',
-                    ),
-                    subtitle: Text('serModel.email'),
-                  ))
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              ListTile(
-                title: Text('Home Page'),
-                leading: Icon(Icons.home),
-                onTap: () {},
-              ),
-              BlocBuilder<ThemeAppBloc, ThemeData>(
-                builder: (context, state) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        width: 200.0,
-                        height: 100.0,
-                        child: Shimmer.fromColors(
-                          baseColor: Colors.red,
-                          highlightColor: Colors.yellow,
-                          child: Text(
-                            'Shimmer',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Switch(
-                          value: state == darkThemeData(),
-                          onChanged: (val) {
-                            context
-                                .read<ThemeAppBloc>()
-                                .add(SwitcherThemeApp());
-                          }),
-                    ],
-                  );
-                },
-              ),
-              ListTile(
-                title: Text('languge'),
-                leading: Icon(Icons.language_outlined),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('Account'),
-                leading: Icon(Icons.account_balance_wallet_outlined),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('order'),
-                leading: Icon(Icons.account_box_rounded),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('About Us'),
-                leading: Icon(Icons.help),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('cantact Us'),
-                leading: Icon(Icons.phone_sharp),
-                onTap: () {
-                  // await launchURL(url);
-                },
-              ),
-              ListTile(
-                title: Text('log out'),
-                leading: Icon(Icons.exit_to_app),
-                onTap: () async {},
-              ),
-            ]),
-          ),
-        ),
         body: pages[selectedIndex],
         bottomNavigationBar: NavigationBar(
           height: height / 10,
@@ -165,7 +61,113 @@ class _BasepageState extends State<Basepage> {
   }
 }
 
-List<Widget> pages = [Home(), Scaffold(), Scaffold(), Scaffold()];
+List<Widget> pages = [
+  Home(),
+  PlaceCafes(),
+  Scaffold(
+    appBar: AppBar(),
+    drawer: Drawer(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView(children: [
+          Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: CircleAvatar(
+                      child: Icon(
+                        Icons.person,
+                        size: 40,
+                      ),
+                    )),
+              ),
+              Expanded(
+                  child: ListTile(
+                title: Text(
+                  ' userModel.name',
+                ),
+                subtitle: Text('serModel.email'),
+              ))
+            ],
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          ListTile(
+            title: Text('Home Page'),
+            leading: Icon(Icons.home),
+            onTap: () {},
+          ),
+          BlocBuilder<ThemeAppBloc, ThemeData>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  SizedBox(
+                    width: 200.0,
+                    height: 100.0,
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.red,
+                      highlightColor: Colors.yellow,
+                      child: Text(
+                        'Shimmer',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Switch(
+                      value: state == darkThemeData(),
+                      onChanged: (val) {
+                        context.read<ThemeAppBloc>().add(SwitcherThemeApp());
+                      }),
+                ],
+              );
+            },
+          ),
+          ListTile(
+            title: Text('languge'),
+            leading: Icon(Icons.language_outlined),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('Account'),
+            leading: Icon(Icons.account_balance_wallet_outlined),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('order'),
+            leading: Icon(Icons.account_box_rounded),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('About Us'),
+            leading: Icon(Icons.help),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('cantact Us'),
+            leading: Icon(Icons.phone_sharp),
+            onTap: () {
+              // await launchURL(url);
+            },
+          ),
+          ListTile(
+            title: Text('log out'),
+            leading: Icon(Icons.exit_to_app),
+            onTap: () async {},
+          ),
+        ]),
+      ),
+    ),
+  ),
+  Scaffold()
+];
 String value = '';
 
 class Home extends StatefulWidget {
@@ -174,9 +176,6 @@ class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
 }
-
-Color white = Colors.white;
-Color red = Colors.red;
 
 class _HomeState extends State<Home> {
   @override
@@ -199,6 +198,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               bottom: TabBar.secondary(
+                
                 enableFeedback: true,
                 padding: EdgeInsets.all(10),
                 indicator: BoxDecoration(
@@ -210,39 +210,42 @@ class _HomeState extends State<Home> {
                     color: Colors.grey,
                     width: 1,
                   ),
-                  // color: Colors.redAccent,
+                  color: Colors.redAccent,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 // automaticIndicatorColorAdjustment: true,
                 splashBorderRadius: BorderRadius.all(Radius.circular(100)),
                 // tabAlignment: TabAlignment.start,
-                unselectedLabelColor: red,
-                labelColor: white,
+                unselectedLabelColor: Colors.red,
+                labelColor: Colors.white,
                 indicatorColor: null,
                 dividerColor: null,
                 // controller: TabController(length: 3, vsync: this),
                 tabs: [
                   Tab(
-                      icon: Icon(Icons.groups_sharp),
+
+                      icon:  FaIcon(FontAwesomeIcons.peopleGroup),
                       height: 100,
                       child: Text('Meeting Room')),
                   Tab(
-                      icon: Icon(Icons.video_camera_front),
+                      icon: FaIcon(FontAwesomeIcons.clockRotateLeft),
                       height: 100,
                       child: Text('coffe Shop')),
                   Tab(
-                      icon: Icon(Icons.roller_shades_closed_outlined),
+                      icon: FaIcon(FontAwesomeIcons.schoolLock),
                       height: 100,
                       child: Text('Study Room')),
                   Tab(
-                      icon: Icon(Icons.event_available_outlined),
+                      icon: FaIcon(FontAwesomeIcons.peopleRoof),
                       height: 100,
                       child: Text('Events')),
                 ],
               ),
             ),
-            body: TabBarView(children: [
-              PlaceCafes(),
+            body: TabBarView(
+              
+              children: [
+              PageMeetingRoom(),
               PageCoffeShop(),
               PageStudyRoom(),
               PageEvents()
@@ -258,7 +261,7 @@ class _HomeState extends State<Home> {
                           reservationEntity: ReservationModel()));
                     },
                     child: Container(
-                      width: 400,
+                      width: 350,
                       height: 50,
                       decoration: BoxDecoration(
                         color: Colors.pink,

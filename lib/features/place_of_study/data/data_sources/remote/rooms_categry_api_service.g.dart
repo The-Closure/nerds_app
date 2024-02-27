@@ -57,7 +57,8 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = newRoomsCategryModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(newRoomsCategryModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RoomsCategryModel>>(Options(
       method: 'POST',
@@ -86,9 +87,10 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     required RoomsCategryEntity newRoomsCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newRoomsCategryModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RoomsCategryModel>>(Options(
       method: 'PUT',
@@ -114,7 +116,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   @override
   Future<HttpResponse<String>> deletRoomsCategry({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

@@ -24,7 +24,8 @@ class _RoomApiService implements RoomApiService {
   Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'': idPlace};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<RoomModel>>>(Options(
@@ -56,7 +57,8 @@ class _RoomApiService implements RoomApiService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newRoomModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RoomModel>>(Options(
       method: 'POST',
@@ -85,9 +87,10 @@ class _RoomApiService implements RoomApiService {
     required RoomEntity newRoomModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(newRoomModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RoomModel>>(Options(
       method: 'PUT',
@@ -113,7 +116,7 @@ class _RoomApiService implements RoomApiService {
   @override
   Future<HttpResponse<String>> deletRoom({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

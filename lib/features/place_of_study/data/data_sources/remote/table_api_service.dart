@@ -14,11 +14,11 @@ abstract class TableApiService {
   Future<HttpResponse<List<TableModel>>> getTables({@Header('')  required int idRoom});
   @POST('path')
   Future<HttpResponse<TableModel>> postTable(
-      {required TableEntity newTableModel});
+      {@Body() required TableEntity newTableModel});
 
   @PUT('path')
   Future<HttpResponse<TableModel>> putTable(
-      {required int id, required TableEntity newTableModel});
+      {@Query('') required int id,@Body() required TableEntity newTableModel});
   @DELETE('path')
-  Future<HttpResponse<String>> deletTable({required int id});
+  Future<HttpResponse<String>> deletTable({@Query('') required int id});
 }

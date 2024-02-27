@@ -14,11 +14,12 @@ abstract class UserApiService {
   Future<HttpResponse<List<UserModel>>> getUsers();
 
   @POST('path')
-  Future<HttpResponse<UserModel>> postUser({required UserEntity newUserModel});
+  Future<HttpResponse<UserModel>> postUser(
+      {@Body() required UserEntity newUserModel});
 
   @PUT('path')
   Future<HttpResponse<UserModel>> putUser(
-      {required int id, required UserEntity newUserModel});
+      {@Query('') required int id, @Body() required UserEntity newUserModel});
   @DELETE('path')
-  Future<HttpResponse<String>> deletUser({required int id});
+  Future<HttpResponse<String>> deletUser({@Query('') required int id});
 }
