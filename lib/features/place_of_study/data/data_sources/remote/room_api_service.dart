@@ -6,12 +6,12 @@ import 'package:retrofit/retrofit.dart';
 
 part 'room_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: roomsAPIBaseURL)
 abstract class RoomApiService {
   factory RoomApiService(Dio dio) = _RoomApiService;
 
-  @GET('/Rooms/allRooms')
-  Future<HttpResponse<List<RoomModel>>> getRooms({@Header('') required int idPlace});
+  @GET('/1/AllRooms')
+  Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace});
 
   @POST('path')
   Future<HttpResponse<RoomModel>> postRoom({@Body() required RoomEntity newRoomModel});

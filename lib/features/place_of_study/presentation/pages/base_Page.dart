@@ -3,21 +3,16 @@
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_bloc.dart';
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_state.dart';
 import 'package:dashbord_cafe/core/constants/constants.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_model.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_bloc.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_event.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_state.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_meeting_room.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/place_cafes.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/roomsCategry/bloc/rooms_categry_bloc.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/roomsCategry/bloc/rooms_categry_event.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/roomsCategry/bloc/rooms_categry_state.dart';
 import 'package:dashbord_cafe/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'page_coffe_shop.dart';
-import 'page_events.dart';
-import 'page_study_room.dart';
+import '../widgets/place_widget.dart';
 
 int selectedIndex = 0;
 
@@ -63,7 +58,7 @@ class _BasepageState extends State<Basepage> {
 
 List<Widget> pages = [
   Home(),
-  PlaceCafes(),
+  Scaffold(),
   Scaffold(
     appBar: AppBar(),
     drawer: Drawer(
@@ -181,98 +176,138 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<ReservationBloc>()..add(GetReservations()),
-      child: DefaultTabController(
-        // animationDuration: Duration(seconds: 4),
-        length: 4,
-        child: Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 100,
-              // centerTitle: true,
-              // leading: Container(),
-              title: Text(
-                'Welcome to COSEL',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              bottom: TabBar.secondary(
-                
-                enableFeedback: true,
-                padding: EdgeInsets.all(10),
-                indicator: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Color.fromARGB(45, 141, 153, 187),
-                    const Color.fromARGB(255, 238, 106, 106)
-                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                  color: Colors.redAccent,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                // automaticIndicatorColorAdjustment: true,
-                splashBorderRadius: BorderRadius.all(Radius.circular(100)),
-                // tabAlignment: TabAlignment.start,
-                unselectedLabelColor: Colors.red,
-                labelColor: Colors.white,
-                indicatorColor: null,
-                dividerColor: null,
-                // controller: TabController(length: 3, vsync: this),
-                tabs: [
-                  Tab(
+      create: (context) => sl<RoomsCategryBloc>()..add(GetRoomsCategrys()),
+      child: BlocConsumer<RoomsCategryBloc, RoomsCategryState>(
+        listener: (context, state) {
+          // TODO: do stuff here based on RoomsCategryBloc state
+        },
+        builder: (context, state) {
+          if (state is RoomsCategrysDoneState) {
+            List<PlaceContainer> pagesCategry = [];
 
-                      icon:  FaIcon(FontAwesomeIcons.peopleGroup),
-                      height: 100,
-                      child: Text('Meeting Room')),
-                  Tab(
-                      icon: FaIcon(FontAwesomeIcons.clockRotateLeft),
-                      height: 100,
-                      child: Text('coffe Shop')),
-                  Tab(
-                      icon: FaIcon(FontAwesomeIcons.schoolLock),
-                      height: 100,
-                      child: Text('Study Room')),
-                  Tab(
-                      icon: FaIcon(FontAwesomeIcons.peopleRoof),
-                      height: 100,
-                      child: Text('Events')),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              
-              children: [
-              PageMeetingRoom(),
-              PageCoffeShop(),
-              PageStudyRoom(),
-              PageEvents()
-            ]),
-            floatingActionButton:
-                BlocBuilder<ReservationBloc, ReservationState>(
-              builder: (context, state) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      context.read<ReservationBloc>().add(PostReservation(
-                          reservationEntity: ReservationModel()));
-                    },
-                    child: Container(
-                      width: 350,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.pink,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(child: Text('Book now')),
+            List<Widget> tabs = [];
+            state.roomsCategrys!.forEach((element) {
+              tabs.add(Container(
+                // color: Colors.grey,
+                height: height / 10,
+                width: width / 4,
+                child: Tab(
+                    text: element.type,
+                    icon: FaIcon(
+                      (element.id! % 3 == 0)
+                          ? FontAwesomeIcons.addressBook
+                          : (element.id! % 3 == 1)
+                              ? FontAwesomeIcons.peopleGroup
+                              : FontAwesomeIcons.accusoft,
+                    )
+                    // FontAwesomeIcons.peopleGroup FaIcon(FontAwesomeIcons.peopleGroup)
+                    ),
+              ));
+              pagesCategry.add(PlaceContainer(idCategry: element.id!));
+            });
+            return DefaultTabController(
+              length: state.roomsCategrys!.length,
+              child: Scaffold(
+                appBar: AppBar(
+                  toolbarHeight: 100,
+                  // leading: Container(),
+                  title: Text(
+                    'Welcome to COSEL',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                );
-              },
-            )),
+                  bottom: TabBar.secondary(
+                      tabAlignment: TabAlignment.start,
+                      isScrollable: true,
+                      enableFeedback: true,
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      indicator: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(45, 141, 153, 187),
+                              const Color.fromARGB(255, 238, 106, 106)
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      splashBorderRadius:
+                          BorderRadius.all(Radius.circular(100)),
+                      unselectedLabelColor: Colors.red,
+                      labelColor: Colors.white,
+                      // indicatorColor: Colors.red,
+                      // dividerColor: Colors.red,
+                      // controller: TabController(length: 3, vsync: this),
+                      tabs: tabs
+
+                      // SizedBox(
+                      //   width: width,
+                      //   height: height / 10,
+                      //   child: ListView.builder(
+                      //     scrollDirection: Axis.horizontal,
+                      //     itemCount: state.roomsCategrys!.length,
+                      //     itemBuilder: (context, index) => Tab(
+                      //         icon: FaIcon(FontAwesomeIcons.peopleGroup),
+                      //         height: 100,
+                      //         child: Text(state.roomsCategrys![index].type!)),
+                      //   ),
+                      // )
+
+                      // Tab(
+                      //     icon: FaIcon(FontAwesomeIcons.clockRotateLeft),
+                      //     height: 100,
+                      //     child: Text('coffe Shop')),
+                      // Tab(
+                      //     icon: FaIcon(FontAwesomeIcons.schoolLock),
+                      //     height: 100,
+                      //     child: Text('Study Room')),
+                      // Tab(
+                      //     icon: FaIcon(FontAwesomeIcons.peopleRoof),
+                      //     height: 100,
+                      //     child: Text('Events')),
+
+                      ),
+                ),
+                body: TabBarView(children: pagesCategry),
+                // floatingActionButton:
+                //     BlocBuilder<ReservationBloc, ReservationState>(
+                //   builder: (context, state) {
+                //     return Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: InkWell(
+                //         onTap: () {
+                //           context.read<ReservationBloc>().add(PostReservation(
+                //               reservationEntity: ReservationModel()));
+                //         },
+                //         child: Container(
+                //           width: 350,
+                //           height: 50,
+                //           decoration: BoxDecoration(
+                //             color: Colors.pink,
+                //             borderRadius: BorderRadius.circular(20),
+                //           ),
+                //           child: Center(
+                //               child: Text(
+                //             'Book now',
+                //             style: TextStyle(color: Colors.white),
+                //           )),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // ),
+              ),
+            );
+          } else if(state is RoomsCategrysErrorState){
+            return Center(child: Text(state.exception!.message!),);
+          }else{
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }

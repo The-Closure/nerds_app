@@ -1,13 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:dashbord_cafe/features/place_of_study/domain/entities/table_entity.dart';
-
 
 abstract class TableEvent {
   const TableEvent();
 }
 
 class GetTables extends TableEvent {
-  const GetTables();
+  int idRoom;
+  GetTables({
+    required this.idRoom,
+  });
+   
 }
 
 

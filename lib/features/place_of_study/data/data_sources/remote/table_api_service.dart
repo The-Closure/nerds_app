@@ -10,8 +10,8 @@ part 'table_api_service.g.dart';
 abstract class TableApiService {
   factory TableApiService(Dio dio) = _TableApiService;
 
-  @GET('/Tables/allTables')
-  Future<HttpResponse<List<TableModel>>> getTables({@Header('')  required int idRoom});
+  @GET('/tables/findByRoomId/')
+  Future<HttpResponse<List<TableModel>>> getTables({required int idRoom});
   @POST('path')
   Future<HttpResponse<TableModel>> postTable(
       {@Body() required TableEntity newTableModel});

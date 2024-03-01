@@ -1,30 +1,47 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_login.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/page_sign_up.dart';
+import 'login_page.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/constants.dart';
+import 'sign_up_page.dart';
 
 class PageFirst extends StatelessWidget {
   const PageFirst({super.key});
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(height * 0.5 / 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset('assets/images/cosel logo.png'),
-            Text(
-              'LOOKING FOR A COZY STUDY SPOT',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+            Image.asset(
+              'assets/images/cosel logo.png',
+              height: height * 3 / 15,
             ),
-            Text(
-              'COSEL creates studying spaces that help students go further, faster by building a positive community dreaming of a better tomorrow.',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            SizedBox(
+              height: height * 4 / 10,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text.rich(TextSpan(children: const [
+                  TextSpan(
+                    text: 'LOOKING FOR A COZY STUDY SPOT\n',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+                  ),
+                  TextSpan(
+                    text:
+                        '\nCOSEL creates studying spaces that help students go further, faster by building a positive community dreaming of a better tomorrow.',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ])),
+              ),
             ),
-            SizedBox(height: 40),
+            // SizedBox(height: height / 10),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -43,7 +60,7 @@ class PageFirst extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 width: 311,
-                height: 56,
+                height: height * 1 / 15,
                 child: Center(
                   child: Text(
                     'Login',
@@ -69,6 +86,8 @@ class PageFirst extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                 ),
+                width: 311,
+                height: height * 1 / 15,
                 child: Center(
                   child: Text(
                     'Create account',
@@ -78,8 +97,6 @@ class PageFirst extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                width: 311,
-                height: 56,
               ),
             ),
           ],

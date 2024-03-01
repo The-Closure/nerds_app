@@ -13,7 +13,8 @@ class _TablesCategryApiService implements TablesCategryApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://127.0.0.1:8022/api/v1';
+    baseUrl ??=
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
   }
 
   final Dio _dio;
@@ -34,7 +35,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              '/TablesCategrys/allTablesCategrys',
+              '/table-category/AllTables',
               queryParameters: queryParameters,
               data: _data,
             )

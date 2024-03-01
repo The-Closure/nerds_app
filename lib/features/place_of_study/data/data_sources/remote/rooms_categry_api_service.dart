@@ -10,7 +10,7 @@ part 'rooms_categry_api_service.g.dart';
 abstract class RoomsCategryApiService {
   factory RoomsCategryApiService(Dio dio) = _RoomsCategryApiService;
 
-  @GET('/RoomsCategrys/allRoomsCategrys')
+  @GET('/roomCategories/1/allRoomCategories')
   Future<HttpResponse<List<RoomsCategryModel>>> getRoomsCategrys();
   @POST('path')
   Future<HttpResponse<RoomsCategryModel>> postRoomsCategry(

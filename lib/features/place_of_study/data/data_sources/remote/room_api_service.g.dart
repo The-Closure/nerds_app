@@ -13,7 +13,8 @@ class _RoomApiService implements RoomApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://127.0.0.1:8022/api/v1';
+    baseUrl ??=
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1/rooms';
   }
 
   final Dio _dio;
@@ -24,8 +25,7 @@ class _RoomApiService implements RoomApiService {
   Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'': idPlace};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<RoomModel>>>(Options(
@@ -35,7 +35,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/Rooms/allRooms',
+              '/1/AllRooms',
               queryParameters: queryParameters,
               data: _data,
             )

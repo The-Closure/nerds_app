@@ -3,21 +3,21 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/place_enti
 // @Entity(tableName: 'Place',primaryKeys: ['id'])
 class PlaceModel extends PlaceEntity {
   const PlaceModel({
-    num? id,
+    int? id,
     String? name,
-    List<dynamic>? locations,
-  }) : super(id, name, locations);
+    String? location,
+  }) : super(id, name, location);
 
   factory PlaceModel.fromJson(Map<String, dynamic> map) {
     return PlaceModel(
-     id: map['id'] != null ? map['id'] as num : null,
+     id: map['id'] != null ? map['id'] as int : null,
 
       name: map['name'] ?? "",
-      locations: map['locations'] ?? "",
+      location: map['location'] ?? "",
     );
   }
   factory PlaceModel.fromEntity(PlaceEntity entity) {
     return PlaceModel(
-        id: entity.id, name: entity.name, locations: entity.locations);
+        id: entity.id, name: entity.name, location: entity.location);
   }
 }

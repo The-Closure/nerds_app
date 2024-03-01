@@ -4,13 +4,13 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCa
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCategry/bloc/tables_categry_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TablesCategryOfCafesBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
+class TablesCategryBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
   final GetTablesCategryUseCase _getTablesCategryUseCase;
   final PostTablesCategryUseCase _postTablesCategryUseCase;
   final PutTablesCategryUseCase _putTablesCategryUseCase;
   final DeletTablesCategryUseCase _deletTablesCategryUseCase;
 
-  TablesCategryOfCafesBloc(this._getTablesCategryUseCase, this._postTablesCategryUseCase, this._putTablesCategryUseCase, this._deletTablesCategryUseCase) : super(const TablesCategrysLoadingState()) {
+  TablesCategryBloc(this._getTablesCategryUseCase, this._postTablesCategryUseCase, this._putTablesCategryUseCase, this._deletTablesCategryUseCase) : super(const TablesCategrysLoadingState()) {
     on<GetTablesCategrys>(onGetTablesCategry);
 
     on<PostTablesCategry>(onPostTablesCategry);

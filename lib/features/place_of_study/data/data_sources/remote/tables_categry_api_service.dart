@@ -10,7 +10,7 @@ part 'tables_categry_api_service.g.dart';
 abstract class TablesCategryApiService {
   factory TablesCategryApiService(Dio dio) = _TablesCategryApiService;
 
-  @GET('/TablesCategrys/allTablesCategrys')
+  @GET('/table-category/AllTables')
   Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys();
   @POST('path')
   Future<HttpResponse<TablesCategryModel>> postTablesCategry(

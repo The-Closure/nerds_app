@@ -4,28 +4,29 @@
 import 'package:equatable/equatable.dart';
 
 class PlaceEntity extends Equatable {
-  final num? id;
+  final int? id;
   final String? name;
-  final List<dynamic>? locations;
+  final String? location;
 
-  const PlaceEntity(this.id, this.name, this.locations);
+  const PlaceEntity(this.id, this.name, this.location);
 
   @override
-  List<Object?> get props => [id, name, locations];
+  List<Object?> get props => [id, name, location];
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'locations': locations,
+      'location': location,
     };
   }
 
   factory PlaceEntity.fromJson(Map<String, dynamic> map) {
     return PlaceEntity(
-      map['id'] != null ? map['id'] as num : null,
+      map['id'] != null ? map['id'] as int : null,
       map['name'] != null ? map['name'] as String : null,
-      map['locations'] != null ? List<dynamic>.from((map['locations'] as List<dynamic>)) : null,
+      map['location'] != null ? map['location'] as String : null
+      
     );
   }
 }

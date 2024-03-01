@@ -13,7 +13,8 @@ class _UserApiService implements UserApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://127.0.0.1:8022/api/v1';
+    baseUrl ??=
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
   }
 
   final Dio _dio;

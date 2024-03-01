@@ -2,8 +2,10 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/pages/base_Pa
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../../core/constants/constants.dart';
+
 class PageLogin extends StatefulWidget {
-  PageLogin({super.key});
+  const PageLogin({super.key});
 
   @override
   State<PageLogin> createState() => _PageLoginState();
@@ -18,9 +20,11 @@ class _PageLoginState extends State<PageLogin> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 150,
+        toolbarHeight: height / 6,
         title: const Text(
           'Login',
           style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
@@ -28,7 +32,7 @@ class _PageLoginState extends State<PageLogin> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(height * 0.2 / 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -37,9 +41,9 @@ class _PageLoginState extends State<PageLogin> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 25.0,
-                  ),
+                  // SizedBox(
+                  //   height: height / ,
+                  // ),
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
@@ -51,12 +55,12 @@ class _PageLoginState extends State<PageLogin> {
                       }
                     },
                     decoration: InputDecoration(
-                        label: Text('Email or username'),
+                        label: const Text('Email or username'),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12))),
                   ),
-                  const SizedBox(
-                    height: 50.0,
+                  SizedBox(
+                    height: height * 0.2 / 6,
                   ),
                   TextFormField(
                     controller: password,
@@ -75,7 +79,9 @@ class _PageLoginState extends State<PageLogin> {
                                 obscureText = !obscureText;
                               });
                             },
-                            child: Icon(Icons.remove_red_eye_sharp)),
+                            child: Icon(obscureText
+                                ? Icons.remove_red_eye_sharp
+                                : Icons.remove_red_eye_outlined)),
                         label: Text('Password'),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12))),
@@ -103,7 +109,9 @@ class _PageLoginState extends State<PageLogin> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'OR SING IN WITH',
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 51, 153, 237),
+                      fontWeight: FontWeight.w500),
                 )),
             const SizedBox(
               height: 20,
@@ -191,7 +199,7 @@ class _PageLoginState extends State<PageLogin> {
                       Text(
                         'Continue with Google',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 151, 124, 124),
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),
@@ -238,11 +246,7 @@ class _PageLoginState extends State<PageLogin> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Color(0xffF05984),
-                        width: 1,
-                      ),
-                      color: Color(0xffF05984),
+                      color: Color.fromARGB(255, 240, 228, 232),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     width: 311,
@@ -251,7 +255,7 @@ class _PageLoginState extends State<PageLogin> {
                       child: Text(
                         'Login',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 130, 105, 105),
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),

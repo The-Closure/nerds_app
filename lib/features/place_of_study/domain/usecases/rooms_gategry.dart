@@ -11,7 +11,7 @@ class GetRoomsCategryUseCase
 
   @override
   Future<DataState<List<RoomsCategryEntity>>> call({int? params}) {
-    return _roomsCategryRepository.getRoomsCategrys(idPlace: params!);
+    return _roomsCategryRepository.getRoomsCategrys(idPlace: params??1);
   }
 }
 

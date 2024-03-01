@@ -6,13 +6,13 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/table/bl
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class TableOfCafesBloc extends Bloc<TableEvent, TableState> {
+class TableBloc extends Bloc<TableEvent, TableState> {
   final GetTableUseCase _getTableUseCase;
   final PostTableUseCase _postTableUseCase;
   final PutTableUseCase _putTableUseCase;
   final DeletTableUseCase _deletTableUseCase;
 
-  TableOfCafesBloc(this._getTableUseCase, this._postTableUseCase, this._putTableUseCase, this._deletTableUseCase) : super(const TablesLoadingState()) {
+  TableBloc(this._getTableUseCase, this._postTableUseCase, this._putTableUseCase, this._deletTableUseCase) : super(const TablesLoadingState()) {
     on<GetTables>(onGetTable);
 
     on<PostTable>(onPostTable);
@@ -23,7 +23,7 @@ class TableOfCafesBloc extends Bloc<TableEvent, TableState> {
   }
 
   void onGetTable(GetTables event, Emitter<TableState> emit) async {
-    final dataState = await _getTableUseCase();
+    final dataState = await _getTableUseCase(params: event.idRoom);
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(TablesDoneState(dataState.data!));

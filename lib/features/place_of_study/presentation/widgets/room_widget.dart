@@ -1,19 +1,21 @@
 // import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dashbord_cafe/features/place_of_study/domain/entities/place_entity.dart';
+
 import 'package:flutter/material.dart';
 
-class PlaceWidject extends StatelessWidget {
-  final PlaceEntity? place;
-  final bool? isRemovable;
-  final void Function(PlaceEntity place)? onRemove;
-  final void Function(PlaceEntity place)? onplacePressed;
+import '../../domain/entities/room_entity.dart';
 
-  const PlaceWidject({
+class RoomWidget extends StatelessWidget {
+  final RoomEntity room;
+  final int index;
+  final bool? isRemovable;
+  final void Function(RoomEntity room)? onRemove;
+  final void Function(RoomEntity room)? onRoomPressed;
+
+  const RoomWidget({
     Key? key,
-    this.place,
-    this.onplacePressed,
+    this.onRoomPressed,
     this.isRemovable = false,
-    this.onRemove,
+    this.onRemove, required this.room, required this.index
   }) : super(key: key);
 
   @override
@@ -34,8 +36,8 @@ class PlaceWidject extends StatelessWidget {
                 height: double.maxFinite,
                 decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.08),
-                    image: const DecorationImage(
-                        image: AssetImage('assets/images/cafe1.jpg'),
+                    image:  DecorationImage(
+                        image: AssetImage('assets/images/cafe${index+1}.jpg'),
                         fit: BoxFit.cover)),
               ),
             ),
@@ -46,59 +48,6 @@ class PlaceWidject extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildImage(BuildContext context) {
-  //   return CachedNetworkImage(
-  //     imageUrl: place!.urlToImage!,
-  //     imageBuilder : (context, imageProvider) => Padding(
-  //       padding: const EdgeInsetsDirectional.only(end: 14),
-  //         child: ClipRRect(
-  //           borderRadius: BorderRadius.circular(20.0),
-  //           child: Container(
-  //             width: MediaQuery.of(context).size.width / 3,
-  //             height: double.maxFinite,
-  //             decoration: BoxDecoration(
-  //               color: Colors.black.withOpacity(0.08),
-  //               image: DecorationImage(
-  //                 image: imageProvider,
-  //                 fit: BoxFit.cover
-  //               )
-  //             ),
-  //           ),
-  //         ),
-  //     ),
-  //     progressIndicatorBuilder : (context, url, downloadProgress) => Padding(
-  //       padding: const EdgeInsetsDirectional.only(end: 14),
-  //         child: ClipRRect(
-  //           borderRadius: BorderRadius.circular(20.0),
-  //           child: Container(
-  //             width: MediaQuery.of(context).size.width / 3,
-  //             height: double.maxFinite,
-  //             child: CupertinoActivityIndicator(),
-  //             decoration: BoxDecoration(
-  //               color: Colors.black.withOpacity(0.08),
-  //             ),
-  //           ),
-  //         ),
-  //     ),
-  //     errorWidget : (context, url, error) =>
-  //     Padding(
-  //       padding: const EdgeInsetsDirectional.only(end: 14),
-  //         child: ClipRRect(
-  //           borderRadius: BorderRadius.circular(20.0),
-  //           child: Container(
-  //             width: MediaQuery.of(context).size.width / 3,
-  //             height: double.maxFinite,
-  //             child: Icon(Icons.error),
-  //             decoration: BoxDecoration(
-  //               color: Colors.black.withOpacity(0.08),
-  //             ),
-  //           ),
-  //         ),
-  //     )
-  //   );
-  // }
-
   Widget _buildTitleAndDescription() {
     return Expanded(
       child: Padding(
@@ -109,7 +58,7 @@ class PlaceWidject extends StatelessWidget {
           children: [
             // Title
             Text(
-              place!.name ?? '',
+              room.toString(),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -125,7 +74,7 @@ class PlaceWidject extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  place!.locations![0] ?? '',
+                  room.max_num_of_chairs!.toString(),
                   maxLines: 2,
                 ),
               ),
@@ -164,14 +113,14 @@ class PlaceWidject extends StatelessWidget {
   }
 
   void _onTap() {
-    if (onplacePressed != null) {
-      onplacePressed!(place!);
+    if (onRoomPressed != null) {
+      onRoomPressed!(room);
     }
   }
 
   void _onRemove() {
     if (onRemove != null) {
-      onRemove!(place!);
+      onRemove!(room);
     }
   }
 }

@@ -23,7 +23,7 @@ class RoomOfCafesBloc extends Bloc<RoomEvent, RoomState> {
   }
 
   void onGetRooms(GetRooms event, Emitter<RoomState> emit) async {
-    final dataState = await _getRoomUseCase();
+    final dataState = await _getRoomUseCase(params:event.idPlace);
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(RoomsDoneState(dataState.data!));
