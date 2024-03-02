@@ -3,52 +3,52 @@ import 'package:dashbord_cafe/core/usecases/usecase.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/entities/reservation_entity.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/reservation_repository.dart';
 
-class GetReservationUseCase
-    implements UseCase<DataState<List<ReservationEntity>>, void> {
+import '../entities/reservation_get_entity.dart';
+
+class GetReservationRoomUseCase
+    implements UseCase<DataState<List<ReservationGetEntity>>, int> {
   final ReservationRepository _reservationRepository;
 
-  GetReservationUseCase(this._reservationRepository);
+  GetReservationRoomUseCase(this._reservationRepository);
 
   @override
-  Future<DataState<List<ReservationEntity>>> call({void params}) {
-    return _reservationRepository.getReservations();
+  Future<DataState<List<ReservationGetEntity>>> call({int? params}) {
+    return _reservationRepository.getReservationsRooms(idPlace: params!);
   }
 }
 
-class PostReservationUseCase
-    implements UseCase<DataState<ReservationEntity>, ReservationEntity> {
+class GetReservationTableUseCase
+    implements UseCase<DataState<List<ReservationGetEntity>>, int> {
   final ReservationRepository _reservationRepository;
 
-  PostReservationUseCase(this._reservationRepository);
+  GetReservationTableUseCase(this._reservationRepository);
 
   @override
-  Future<DataState<ReservationEntity>> call({ReservationEntity? params}) {
-    return _reservationRepository.postReservation(
-        newReservationEntity: params!);
+  Future<DataState<List<ReservationGetEntity>>> call({int? params}) {
+    return _reservationRepository.getReservationsTable(idPlace: params!);
   }
 }
 
-class PutReservationUseCase
-    implements UseCase<DataState<ReservationEntity>, ReservationEntity> {
+class PostReservationRoomUseCase
+    implements UseCase<DataState<ReservationGetEntity>, ReservationEntity> {
   final ReservationRepository _reservationRepository;
 
-  PutReservationUseCase(this._reservationRepository);
+  PostReservationRoomUseCase(this._reservationRepository);
 
   @override
-  Future<DataState<ReservationEntity>> call(
-      {ReservationEntity? params, int? id}) {
-    return _reservationRepository.putReservation(
-        newReservationEntity: params!, id: id!);
+  Future<DataState<ReservationGetEntity>> call({ReservationEntity? params,int?idPlace}) {
+    return _reservationRepository.postReservationRoom( idPlace: idPlace!, newReservationRoomEntity: params!);
   }
 }
 
-class DeletReservationUseCase implements UseCase<DataState<String>, int> {
+class PostReservationTableUseCase
+    implements UseCase<DataState<ReservationGetEntity>, ReservationEntity> {
   final ReservationRepository _reservationRepository;
 
-  DeletReservationUseCase(this._reservationRepository);
+  PostReservationTableUseCase(this._reservationRepository);
 
   @override
-  Future<DataState<String>> call({int? params}) {
-    return _reservationRepository.deletReservation(id: params!);
+  Future<DataState<ReservationGetEntity>> call({ReservationEntity? params,int?idPlace}) {
+    return _reservationRepository.postReservationTable( idPlace: idPlace!, newReservationTableEntity: params!);
   }
 }

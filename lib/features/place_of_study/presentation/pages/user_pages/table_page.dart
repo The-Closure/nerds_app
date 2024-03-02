@@ -6,7 +6,7 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/table/bl
 import 'package:dashbord_cafe/features/place_of_study/presentation/widgets/table_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../injection_container.dart';
+import '../../../../../injection_container.dart';
 
 class TablePage extends StatelessWidget {
   const TablePage(

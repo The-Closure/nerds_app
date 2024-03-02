@@ -18,7 +18,7 @@ abstract class TableApiService {
 
   @PUT('/1/update/1')
   Future<HttpResponse<TableModel>> putTable(
-      {required int idPlace,@Query('') required int id,@Body() required TableEntity newTableModel});
+      {required int idPlace,required int id,@Body() required TableEntity newTableModel});
   @DELETE('/delete/4')
-  Future<HttpResponse<String>> deletTable({required int idPlace,@Query('') required int id});
+  Future<HttpResponse<String>> deletTable({required int idPlace,required int id});
 }

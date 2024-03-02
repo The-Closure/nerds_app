@@ -35,7 +35,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/3/AllRooms',
+              '/$idPlace/AllRooms',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -68,7 +68,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/1/showByCategory/1',
+              '/$idPlace/showByCategory/$idCategry',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -102,7 +102,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/2/newRoom',
+              '/$idPlace/newRoom',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -123,7 +123,7 @@ class _RoomApiService implements RoomApiService {
     required RoomEntity newRoomModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(newRoomModel.toJson());
@@ -155,7 +155,7 @@ class _RoomApiService implements RoomApiService {
     required int id,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

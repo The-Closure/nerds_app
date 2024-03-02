@@ -19,7 +19,7 @@ abstract class PlaceApiService {
 
   @PUT('/edit/1')
   Future<HttpResponse<PlaceModel>> putPlace(
-      {@Query('') required int id, @Body() required PlaceEntity newPlaceModel});
+      {required int id, @Body() required PlaceEntity newPlaceModel});
   @DELETE('/delete/1')
-  Future<HttpResponse<String>> deletPlace({@Query('') required int id});
+  Future<HttpResponse<String>> deletPlace({required int id});
 }

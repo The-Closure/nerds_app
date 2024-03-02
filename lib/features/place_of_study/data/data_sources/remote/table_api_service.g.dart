@@ -36,7 +36,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              '/1/AllTables',
+              '/$idPlace/AllTables',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -70,7 +70,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              '/1/newTable',
+              '/$idPlace/newTable',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -91,7 +91,7 @@ class _TableApiService implements TableApiService {
     required TableEntity newTableModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(newTableModel.toJson());
@@ -123,7 +123,7 @@ class _TableApiService implements TableApiService {
     required int id,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

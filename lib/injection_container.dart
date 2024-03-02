@@ -23,17 +23,20 @@ import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCa
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 
+import 'features/place_of_study/data/data_sources/remote/reservation_api_service.dart';
+import 'features/place_of_study/data/repository/reservation_repository_impl.dart';
 import 'features/place_of_study/data/repository/room_repository_impl.dart';
+import 'features/place_of_study/domain/repository/reservation_repository.dart';
 import 'features/place_of_study/domain/repository/room_repository.dart';
+import 'features/place_of_study/domain/usecases/reservation.dart';
 import 'features/place_of_study/domain/usecases/table.dart';
+import 'features/place_of_study/presentation/bloc/reservation_room/bloc/reservation_room_bloc.dart';
+import 'features/place_of_study/presentation/bloc/reservation_table/bloc/reservation_table_bloc.dart';
 import 'features/place_of_study/presentation/bloc/table/bloc/table_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  // final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
-  // sl.registerSingleton<AppDatabase>(database);
-
   // Dio
   sl.registerSingleton<Dio>(Dio());
 
@@ -55,8 +58,8 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<TablesCategryRepository>(
       TablesCategryRepositoryImpl(sl()));
 
-  // sl.registerSingleton<ReservationApiService>(ReservationApiService(sl()));
-  // sl.registerSingleton<ReservationRepository>(ReservationRepositoryImpl(sl()));
+  sl.registerSingleton<ReservationApiService>(ReservationApiService(sl()));
+  sl.registerSingleton<ReservationRepository>(ReservationRepositoryImpl(sl()));
 
   //UseCases
   sl.registerSingleton<GetPlaceUseCase>(GetPlaceUseCase(sl()));
@@ -88,29 +91,29 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<DeletTablesCategryUseCase>(
       DeletTablesCategryUseCase(sl()));
 
-  // sl.registerSingleton<GetReservationUseCase>(GetReservationUseCase(sl()));
-  // sl.registerSingleton<PostReservationUseCase>(PostReservationUseCase(sl()));
-  // sl.registerSingleton<PutReservationUseCase>(PutReservationUseCase(sl()));
-  // sl.registerSingleton<DeletReservationUseCase>(DeletReservationUseCase(sl()));
-  // sl.registerSingleton<GetSavedArticleUseCase>(
-  //   GetSavedArticleUseCase(sl())
-  // );
-
-  // sl.registerSingleton<SaveArticleUseCase>(
-  //   SaveArticleUseCase(sl())
-  // );
-
-  // sl.registerSingleton<RemoveArticleUseCase>(
-  //   RemoveArticleUseCase(sl())
-  // );
+  sl.registerSingleton<GetReservationRoomUseCase>(
+      GetReservationRoomUseCase(sl()));
+  sl.registerSingleton<GetReservationTableUseCase>(
+      GetReservationTableUseCase(sl()));
+  sl.registerSingleton<PostReservationRoomUseCase>(
+      PostReservationRoomUseCase(sl()));
+  sl.registerSingleton<PostReservationTableUseCase>(
+      PostReservationTableUseCase(sl()));
 
   // Blocs
   sl.registerFactory<PlaceOfCafesBloc>(
       () => PlaceOfCafesBloc(sl(), sl(), sl(), sl()));
-  sl.registerFactory<RoomOfCafesBloc>(
-      () => RoomOfCafesBloc(sl(), sl(), sl(), sl(),sl(),));
-  // sl.registerFactory<ReservationBloc>(
-  //     () => ReservationBloc(sl(), sl(), sl(), sl()));
+  sl.registerFactory<ReservationRoomBloc>(
+      () => ReservationRoomBloc(sl(), sl()));
+       sl.registerFactory<ReservationTableBloc>(
+      () => ReservationTableBloc(sl(), sl()));
+  sl.registerFactory<RoomOfCafesBloc>(() => RoomOfCafesBloc(
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+        sl(),
+      ));
   sl.registerFactory<TableBloc>(() => TableBloc(sl(), sl(), sl(), sl()));
   sl.registerFactory<TablesCategryBloc>(
       () => TablesCategryBloc(sl(), sl(), sl(), sl()));

@@ -1,11 +1,12 @@
 
-import 'package:dashbord_cafe/features/place_of_study/domain/entities/reservation_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../domain/entities/reservation_get_entity.dart';
+
 abstract class ReservationState extends Equatable {
-  final List<ReservationEntity>? reservations;
-  final ReservationEntity? reservation;
+  final List<ReservationGetEntity>? reservations;
+  final ReservationGetEntity? reservation;
   final String? massege;
 
   final DioException? exception;
@@ -26,19 +27,13 @@ class ReservationsLoadingState extends ReservationState {
 }
 
 class ReservationsDoneState extends ReservationState {
-  const ReservationsDoneState(List<ReservationEntity> reservations) : super(reservations: reservations);
+  const ReservationsDoneState(List<ReservationGetEntity> reservations) : super(reservations: reservations);
 }
 
 class ReservationsErrorState extends ReservationState {
   const ReservationsErrorState(DioException exception) : super(exception: exception);
 }
-class PostReservationsDoneState extends ReservationState {
-  const PostReservationsDoneState(ReservationEntity reservation) : super(reservation: reservation);
-}
 
-class PutReservationsDoneState extends ReservationState {
-  const PutReservationsDoneState(ReservationEntity reservation) : super(reservation: reservation);
-}
-class DeletReservationsDoneState extends ReservationState {
-  const DeletReservationsDoneState(String massege) : super(massege: massege);
+class PostReservationsDoneState extends ReservationState {
+  const PostReservationsDoneState(ReservationGetEntity reservation) : super(reservation: reservation);
 }

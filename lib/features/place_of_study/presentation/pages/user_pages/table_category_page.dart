@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, non_constant_identifier_names, prefer_typing_uninitialized_variables
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCategry/bloc/tables_categry_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCategry/bloc/tables_categry_state.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/pages/table_page.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/pages/user_pages/table_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../injection_container.dart';
-import '../bloc/tablesCategry/bloc/tables_categry_event.dart';
+import '../../../../../injection_container.dart';
+import '../../bloc/tablesCategry/bloc/tables_categry_event.dart';
 
 class TableCategoryPage extends StatelessWidget {
   final int idPlace;

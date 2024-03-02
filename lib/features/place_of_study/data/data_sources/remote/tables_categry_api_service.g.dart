@@ -36,7 +36,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              '/1/AllTables',
+              '/$idPlace/AllTables',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -71,7 +71,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              '/1/newTable',
+              '/$idPlace/newTable',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -92,7 +92,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     required TablesCategryEntity newTablesCategryModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(newTablesCategryModel.toJson());

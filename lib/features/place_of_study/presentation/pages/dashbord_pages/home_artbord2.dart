@@ -14,20 +14,22 @@ class HomeArtbord2 extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                      text: 'Hi Surf.\n', style: AppTextStyle().TextStyle1()),
-                  TextSpan(
-                      text: '5 Tasks are predning',
-                      style: AppTextStyle().TextStyle3(
-                          color: const Color.fromARGB(255, 197, 162, 162)))
-                ],
+          Padding(
+            padding: const EdgeInsets.only(left: 18.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'Hi Surf.\n', style: AppTextStyle().TextStyle1()),
+                    TextSpan(
+                        text: '5 Tasks are predning',
+                        style: AppTextStyle().TextStyle3(
+                            color: const Color.fromARGB(255, 197, 162, 162)))
+                  ],
+                ),
               ),
-
             ),
           ),
           Center(

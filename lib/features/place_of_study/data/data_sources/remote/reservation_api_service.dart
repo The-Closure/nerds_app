@@ -3,7 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'package:dashbord_cafe/core/constants/constants.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_model.dart';
+
+import '../../models/reservation_get_model.dart';
 
 part 'reservation_api_service.g.dart';
 
@@ -11,17 +12,17 @@ part 'reservation_api_service.g.dart';
 abstract class ReservationApiService {
   factory ReservationApiService(Dio dio) = _ReservationApiService;
 
-  @GET('/getAll')
-  Future<HttpResponse<List<ReservationModel>>> getReservations();
+  @GET('/table-reservations/1/get-all')
+  Future<HttpResponse<List<ReservationGetModel>>> getReservationsTable({required int idPlace});
 
-  @POST('path')
-  Future<HttpResponse<ReservationModel>> postReservation(
-      {@Body() required ReservationEntity newReservationModel});
+  @GET('/room-reservations/1/get-all')
+  Future<HttpResponse<List<ReservationGetModel>>> getReservationsRoom({required int idPlace});
 
-  @PUT('path')
-  Future<HttpResponse<ReservationModel>> putReservation(
-      {@Query('') required int id,@Body() required ReservationEntity newReservationModel});
+  @POST('/table-reservations/1/reserve-table')
+  Future<HttpResponse<ReservationGetModel>> postReservationTable(
+      {required int idPlace,@Body() required ReservationEntity newReservationTable});
 
-  @DELETE('/cancelReservation/1')
-  Future<HttpResponse<String>> deletReservation({@Query('') required int id});
+   @POST('/room-reservations/1/reserve-room')
+  Future<HttpResponse<ReservationGetModel>> postReservationRoom(
+      {required int idPlace,@Body() required ReservationEntity newReservationRoom});
 }

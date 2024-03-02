@@ -6,7 +6,7 @@ import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
-import 'place_page.dart';
+import 'user_pages/place_page.dart';
 
 int selectedIndex = 0;
 

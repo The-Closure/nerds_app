@@ -5,7 +5,7 @@ import 'package:dashbord_cafe/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/room_entity.dart';
-import '../pages/room_category_page.dart';
+import '../pages/user_pages/table_category_page.dart';
 
 class RoomWidget extends StatelessWidget {
   final RoomEntity room;

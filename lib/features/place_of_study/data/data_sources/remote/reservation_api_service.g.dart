@@ -14,7 +14,7 @@ class _ReservationApiService implements ReservationApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://place-admininstration-spring-system-1.onrender.com/api/v1/reservation';
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
   }
 
   final Dio _dio;
@@ -22,20 +22,21 @@ class _ReservationApiService implements ReservationApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<ReservationModel>>> getReservations() async {
+  Future<HttpResponse<List<ReservationGetModel>>> getReservationsTable(
+      {required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<ReservationModel>>>(Options(
+        _setStreamType<HttpResponse<List<ReservationGetModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/getAll',
+              '/table-reservations/$idPlace/get-all',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -45,30 +46,64 @@ class _ReservationApiService implements ReservationApiService {
               baseUrl,
             ))));
     var value = _result.data!
-        .map(
-            (dynamic i) => ReservationModel.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            ReservationGetModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ReservationModel>> postReservation(
-      {required ReservationEntity newReservationModel}) async {
+  Future<HttpResponse<List<ReservationGetModel>>> getReservationsRoom(
+      {required int idPlace}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<ReservationGetModel>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/room-reservations/$idPlace/get-all',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            ReservationGetModel.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ReservationGetModel>> postReservationTable({
+    required int idPlace,
+    required ReservationEntity newReservationTable,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(newReservationModel.toJson());
+    _data.addAll(newReservationTable.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ReservationModel>>(Options(
+        _setStreamType<HttpResponse<ReservationGetModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'path',
+              '/table-reservations/$idPlace/reserve-table',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -77,30 +112,30 @@ class _ReservationApiService implements ReservationApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ReservationModel.fromJson(_result.data!);
+    final value = ReservationGetModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ReservationModel>> putReservation({
-    required int id,
-    required ReservationEntity newReservationModel,
+  Future<HttpResponse<ReservationGetModel>> postReservationRoom({
+    required int idPlace,
+    required ReservationEntity newReservationRoom,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(newReservationModel.toJson());
+    _data.addAll(newReservationRoom.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ReservationModel>>(Options(
-      method: 'PUT',
+        _setStreamType<HttpResponse<ReservationGetModel>>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'path',
+              '/room-reservations/$idPlace/reserve-room',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -109,35 +144,7 @@ class _ReservationApiService implements ReservationApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ReservationModel.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<String>> deletReservation({required int id}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
-      method: 'DELETE',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/cancelReservation/1',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = _result.data!;
+    final value = ReservationGetModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

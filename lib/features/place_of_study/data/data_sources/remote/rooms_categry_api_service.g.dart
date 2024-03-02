@@ -36,7 +36,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              '/1/allRoomCategories',
+              '/$idPlace/allRoomCategories',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -71,7 +71,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              '/1/newRoomCategory',
+              '/$idPlace/newRoomCategory',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -104,7 +104,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              '/1/update/1',
+              '/$idPlace/update/1',
               queryParameters: queryParameters,
               data: _data,
             )

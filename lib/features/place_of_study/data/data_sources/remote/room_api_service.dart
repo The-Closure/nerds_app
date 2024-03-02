@@ -22,8 +22,8 @@ abstract class RoomApiService {
 
   @PUT('/1/update/2')
   Future<HttpResponse<RoomModel>> putRoom(
-      {required int idPlace,@Query('') required int id, @Body() required RoomEntity newRoomModel});
+      {required int idPlace,required int id, @Body() required RoomEntity newRoomModel});
 
   @DELETE('/1/delete/2')
-  Future<HttpResponse<String>> deletRoom({required int idPlace,@Query('') required int id});
+  Future<HttpResponse<String>> deletRoom({required int idPlace,required int id});
 }

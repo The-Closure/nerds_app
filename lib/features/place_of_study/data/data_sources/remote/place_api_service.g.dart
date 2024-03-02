@@ -87,7 +87,7 @@ class _PlaceApiService implements PlaceApiService {
     required PlaceEntity newPlaceModel,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(newPlaceModel.toJson());
@@ -116,7 +116,7 @@ class _PlaceApiService implements PlaceApiService {
   @override
   Future<HttpResponse<String>> deletPlace({required int id}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
