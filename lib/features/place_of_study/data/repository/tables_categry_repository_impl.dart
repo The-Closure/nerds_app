@@ -15,9 +15,9 @@ class TablesCategryRepositoryImpl implements TablesCategryRepository {
   );
 
   @override
-  Future<DataState<List<TablesCategryModel>>> getTablesCategrys() async {
+  Future<DataState<List<TablesCategryModel>>> getTablesCategrys({required int idPlace,}) async {
     try {
-      final httpResponse = await _tablesCategryApiService.getTablesCategrys();
+      final httpResponse = await _tablesCategryApiService.getTablesCategrys(idPlace: idPlace,);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -35,10 +35,10 @@ class TablesCategryRepositoryImpl implements TablesCategryRepository {
 
   @override
   Future<DataState<TablesCategryModel>> postTablesCategry(
-      {required TablesCategryEntity newTablesCategryEntity}) async {
+      {required int idPlace,required TablesCategryEntity newTablesCategryEntity}) async {
     try {
       final httpResponse =
-          await _tablesCategryApiService.postTablesCategry(newTablesCategryModel: newTablesCategryEntity);
+          await _tablesCategryApiService.postTablesCategry(idPlace: idPlace,newTablesCategryModel: newTablesCategryEntity);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -56,10 +56,10 @@ class TablesCategryRepositoryImpl implements TablesCategryRepository {
 
   @override
   Future<DataState<TablesCategryModel>> putTablesCategry(
-      {required int id, required TablesCategryEntity newTablesCategryEntity}) async{
+      {required int idPlace,required int id, required TablesCategryEntity newTablesCategryEntity}) async{
     try {
       final httpResponse =
-          await _tablesCategryApiService.putTablesCategry(newTablesCategryModel: newTablesCategryEntity, id: id);
+          await _tablesCategryApiService.putTablesCategry(idPlace: idPlace,newTablesCategryModel: newTablesCategryEntity, id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -76,9 +76,9 @@ class TablesCategryRepositoryImpl implements TablesCategryRepository {
   }
 
   @override
-  Future<DataState<String>> deletTablesCategry({required int id}) async {
+  Future<DataState<String>> deletTablesCategry({required int idPlace,required int id}) async {
     try {
-      final httpResponse = await _tablesCategryApiService.deletTablesCategry(id: id);
+      final httpResponse = await _tablesCategryApiService.deletTablesCategry(idPlace: idPlace,id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data );

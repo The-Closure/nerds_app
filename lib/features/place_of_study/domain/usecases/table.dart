@@ -10,7 +10,7 @@ class GetTableUseCase implements UseCase<DataState<List<TableEntity>>, int> {
 
   @override
   Future<DataState<List<TableEntity>>> call({int? params}) {
-    return _tableRepository.getTables(idRoom: params!);
+    return _tableRepository.getTables( idPlace: params!);
   }
 }
 
@@ -20,8 +20,8 @@ class PostTableUseCase implements UseCase<DataState<TableEntity>, TableEntity> {
   PostTableUseCase(this._tableRepository);
 
   @override
-  Future<DataState<TableEntity>> call({TableEntity? params}) {
-    return _tableRepository.postTable(newTableEntity: params!);
+  Future<DataState<TableEntity>> call({TableEntity? params, int? idPlace}) {
+    return _tableRepository.postTable(newTableEntity: params!, idPlace: idPlace!);
   }
 }
 
@@ -31,8 +31,8 @@ class PutTableUseCase implements UseCase<DataState<TableEntity>, TableEntity> {
   PutTableUseCase(this._tableRepository);
 
   @override
-  Future<DataState<TableEntity>> call({TableEntity? params, int? id}) {
-    return _tableRepository.putTable(newTableEntity: params!, id: id!);
+  Future<DataState<TableEntity>> call({TableEntity? params, int? id, int? idPlace}) {
+    return _tableRepository.putTable(newTableEntity: params!, id: id!, idPlace: idPlace!);
   }
 }
 
@@ -42,7 +42,7 @@ class DeletTableUseCase implements UseCase<DataState<String>, int> {
   DeletTableUseCase(this._tableRepository);
 
   @override
-  Future<DataState<String>> call({int? params}) {
-    return _tableRepository.deletTable(id: params!);
+  Future<DataState<String>> call({int? params, int? idPlace}) {
+    return _tableRepository.deletTable(id: params!, idPlace: idPlace!);
   }
 }

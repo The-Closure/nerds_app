@@ -6,19 +6,19 @@ import 'package:retrofit/retrofit.dart';
 
 part 'rooms_categry_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: roomsCategryAPIBaseURL)
 abstract class RoomsCategryApiService {
   factory RoomsCategryApiService(Dio dio) = _RoomsCategryApiService;
 
-  @GET('/roomCategories/1/allRoomCategories')
-  Future<HttpResponse<List<RoomsCategryModel>>> getRoomsCategrys();
-  @POST('path')
+  @GET('/1/allRoomCategories')
+  Future<HttpResponse<List<RoomsCategryModel>>> getRoomsCategrys({required int idPlace,});
+  @POST('/1/newRoomCategory')
   Future<HttpResponse<RoomsCategryModel>> postRoomsCategry(
-      {@Body() required RoomsCategryEntity newRoomsCategryModel});
+      {required int idPlace,@Body() required RoomsCategryEntity newRoomsCategryModel});
 
-  @PUT('path')
+  @PUT('/1/update/1')
   Future<HttpResponse<RoomsCategryModel>> putRoomsCategry(
-      {@Query('') required int id,@Body() required RoomsCategryEntity newRoomsCategryModel});
-  @DELETE('path')
-  Future<HttpResponse<String>> deletRoomsCategry({@Query('') required int id});
+      {required int idPlace,@Query('') required int id,@Body() required RoomsCategryEntity newRoomsCategryModel});
+  @DELETE('/1/delete/6')
+  Future<HttpResponse<String>> deletRoomsCategry({required int idPlace,@Query('') required int id});
 }

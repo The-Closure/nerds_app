@@ -1,3 +1,5 @@
+// ignore_for_file: await_only_futures
+
 import 'package:bloc/bloc.dart';
 import 'package:dashbord_cafe/config/di.dart';
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_state.dart';

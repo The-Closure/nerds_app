@@ -7,25 +7,29 @@ abstract class RoomsCategryEvent {
 }
 
 class GetRoomsCategrys extends RoomsCategryEvent {
-  const GetRoomsCategrys();
+  int idPlace;
+   GetRoomsCategrys({required this.idPlace});
 }
 
 
 class PostRoomsCategry extends RoomsCategryEvent {
+  int idPlace;
   RoomsCategryEntity roomsCategryEntity;
-   PostRoomsCategry({
+   PostRoomsCategry({required this.idPlace,
     required this.roomsCategryEntity,
   });
 }
 
 
 class PutRoomsCategry extends RoomsCategryEvent {
+  int idPlace;
   RoomsCategryEntity roomsCategryEntity;
   int id;
-   PutRoomsCategry({required this.roomsCategryEntity,required this.id});
+   PutRoomsCategry({required this.idPlace,required this.roomsCategryEntity,required this.id});
 }
 class DeletRoomsCategry extends RoomsCategryEvent {
+  int idPlace;
   int id;
 
-   DeletRoomsCategry({required this.id});
+   DeletRoomsCategry({required this.idPlace,required this.id});
 }

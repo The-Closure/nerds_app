@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/constants/constants.dart';
+import '../../widgets/my_botton.dart';
 
 class PageLogin extends StatefulWidget {
   const PageLogin({super.key});
@@ -82,7 +83,7 @@ class _PageLoginState extends State<PageLogin> {
                             child: Icon(obscureText
                                 ? Icons.remove_red_eye_sharp
                                 : Icons.remove_red_eye_outlined)),
-                        label: Text('Password'),
+                        label: const Text('Password'),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12))),
                   ),
@@ -119,10 +120,10 @@ class _PageLoginState extends State<PageLogin> {
             Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color(0xff1877F2),
+                  color: const Color(0xff1877F2),
                   width: 1,
                 ),
-                color: Color(0xff1877F2),
+                color: const Color(0xff1877F2),
                 borderRadius: BorderRadius.circular(16),
               ),
               width: 328,
@@ -244,23 +245,7 @@ class _PageLoginState extends State<PageLogin> {
                               builder: (context) => const Basepage()));
                     }
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 240, 228, 232),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    width: 311,
-                    height: 56,
-                    child: const Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 130, 105, 105),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ),
+                  child: const MyBotton(text: 'Login', colorBotton: Color.fromARGB(255, 240, 228, 232), colortext:  Color.fromARGB(255, 130, 105, 105),),
                 ),
               ],
             )),

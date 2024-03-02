@@ -7,29 +7,32 @@ abstract class TableEvent {
 }
 
 class GetTables extends TableEvent {
-  int idRoom;
+  int idPlace;
   GetTables({
-    required this.idRoom,
+   required this.idPlace,
   });
    
 }
 
 
 class PostTable extends TableEvent {
+  int idPlace;
   TableEntity tableEntity;
-   PostTable({
+   PostTable({required this.idPlace,
     required this.tableEntity,
   });
 }
 
 
 class PutTable extends TableEvent {
+  int idPlace;
   TableEntity tableEntity;
   int id;
-   PutTable({required this.tableEntity,required this.id});
+   PutTable({required this.idPlace,required this.tableEntity,required this.id});
 }
 class DeletTable extends TableEvent {
+  int idPlace;
   int id;
 
-   DeletTable({required this.id});
+   DeletTable({required this.idPlace,required this.id});
 }

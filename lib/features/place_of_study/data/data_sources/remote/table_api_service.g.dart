@@ -14,7 +14,7 @@ class _TableApiService implements TableApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1/tables';
   }
 
   final Dio _dio;
@@ -23,7 +23,7 @@ class _TableApiService implements TableApiService {
 
   @override
   Future<HttpResponse<List<TableModel>>> getTables(
-      {required int idRoom}) async {
+      {required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -36,7 +36,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              '/tables/findByRoomId/',
+              '/1/AllTables',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -53,8 +53,10 @@ class _TableApiService implements TableApiService {
   }
 
   @override
-  Future<HttpResponse<TableModel>> postTable(
-      {required TableEntity newTableModel}) async {
+  Future<HttpResponse<TableModel>> postTable({
+    required int idPlace,
+    required TableEntity newTableModel,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -68,7 +70,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/newTable',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -84,6 +86,7 @@ class _TableApiService implements TableApiService {
 
   @override
   Future<HttpResponse<TableModel>> putTable({
+    required int idPlace,
     required int id,
     required TableEntity newTableModel,
   }) async {
@@ -100,7 +103,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/update/1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -115,7 +118,10 @@ class _TableApiService implements TableApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletTable({required int id}) async {
+  Future<HttpResponse<String>> deletTable({
+    required int idPlace,
+    required int id,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
@@ -128,7 +134,7 @@ class _TableApiService implements TableApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/delete/4',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -23,7 +23,7 @@ class RoomsCategryBloc extends Bloc<RoomsCategryEvent, RoomsCategryState> {
   }
 
   void onGetRoomsCategrys(GetRoomsCategrys event, Emitter<RoomsCategryState> emit) async {
-    final dataState = await _getRoomsCategryUseCase();
+    final dataState = await _getRoomsCategryUseCase(params:event.idPlace);
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(RoomsCategrysDoneState(dataState.data!));
@@ -35,7 +35,7 @@ class RoomsCategryBloc extends Bloc<RoomsCategryEvent, RoomsCategryState> {
   }
 
    void onPostRoomsCategrys(PostRoomsCategry event, Emitter<RoomsCategryState> emit) async {
-    final dataState = await _postRoomsCategryUseCase(params: event.roomsCategryEntity);
+    final dataState = await _postRoomsCategryUseCase(idPlace: event.idPlace,params: event.roomsCategryEntity,);
 
     if (dataState is DataSuccess ) {
       emit(PostRoomsCategrysDoneState(dataState.data!));
@@ -46,7 +46,7 @@ class RoomsCategryBloc extends Bloc<RoomsCategryEvent, RoomsCategryState> {
     }
   }
    void onPutRoomsCategrys(PutRoomsCategry event, Emitter<RoomsCategryState> emit) async {
-    final dataState = await _putRoomsCategryUseCase();
+    final dataState = await _putRoomsCategryUseCase(id:event.id ,params: event.roomsCategryEntity, idPlace: event.idPlace);
 
     if (dataState is DataSuccess ) {
       emit(PutRoomsCategrysDoneState(dataState.data!));
@@ -57,7 +57,7 @@ class RoomsCategryBloc extends Bloc<RoomsCategryEvent, RoomsCategryState> {
     }
   }
    void onDeletRoomsCategrys(DeletRoomsCategry event, Emitter<RoomsCategryState> emit) async {
-    final dataState = await _deletRoomsCategryUseCase();
+    final dataState = await _deletRoomsCategryUseCase(params: event.id,idPlace:event.idPlace ,);
 
     if (dataState is DataSuccess ) {
       emit(DeletRoomsCategrysDoneState(dataState.data!));

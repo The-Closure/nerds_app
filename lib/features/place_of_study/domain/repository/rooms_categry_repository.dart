@@ -7,10 +7,10 @@ abstract class RoomsCategryRepository {
       {required int idPlace});
 
   Future<DataState<RoomsCategryEntity>> postRoomsCategry(
-      {required RoomsCategryEntity newRoomsCategryEntity});
+      {required int idPlace,required RoomsCategryEntity newRoomsCategryEntity});
 
   Future<DataState<RoomsCategryEntity>> putRoomsCategry(
-      {required int id, required RoomsCategryEntity newRoomsCategryEntity});
+      {required int idPlace,required int id, required RoomsCategryEntity newRoomsCategryEntity});
 
-  Future<DataState<String>> deletRoomsCategry({required int id});
+  Future<DataState<String>> deletRoomsCategry({required int idPlace,required int id});
 }

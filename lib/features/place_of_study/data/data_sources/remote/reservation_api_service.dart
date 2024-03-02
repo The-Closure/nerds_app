@@ -7,11 +7,11 @@ import 'package:dashbord_cafe/features/place_of_study/data/models/reservation_mo
 
 part 'reservation_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: reservationAPIBaseURL)
 abstract class ReservationApiService {
   factory ReservationApiService(Dio dio) = _ReservationApiService;
 
-  @GET('/reservation/getAll')
+  @GET('/getAll')
   Future<HttpResponse<List<ReservationModel>>> getReservations();
 
   @POST('path')
@@ -22,6 +22,6 @@ abstract class ReservationApiService {
   Future<HttpResponse<ReservationModel>> putReservation(
       {@Query('') required int id,@Body() required ReservationEntity newReservationModel});
 
-  @DELETE('path')
+  @DELETE('/cancelReservation/1')
   Future<HttpResponse<String>> deletReservation({@Query('') required int id});
 }

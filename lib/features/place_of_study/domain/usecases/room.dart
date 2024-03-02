@@ -14,14 +14,25 @@ class GetRoomUseCase implements UseCase<DataState<List<RoomEntity>>, int> {
   }
 }
 
+class GetRoomByCategryUseCase implements UseCase<DataState<List<RoomEntity>>, int> {
+  final RoomRepository _roomRepository;
+
+  GetRoomByCategryUseCase(this._roomRepository);
+
+  @override
+  Future<DataState<List<RoomEntity>>> call({int? params,int? idCategry}) {
+    return _roomRepository.getRoomsByCategry(idPlace: params!, idCategry: idCategry!);
+  }
+}
+
 class PostRoomUseCase implements UseCase<DataState<RoomEntity>, RoomEntity> {
   final RoomRepository _roomRepository;
 
   PostRoomUseCase(this._roomRepository);
 
   @override
-  Future<DataState<RoomEntity>> call({RoomEntity? params}) {
-    return _roomRepository.postRoom(newRoomEntity: params!);
+  Future<DataState<RoomEntity>> call({ RoomEntity? params,int? idPlace}) {
+    return _roomRepository.postRoom(newRoomEntity: params!, idPlace: idPlace!);
   }
 }
 
@@ -31,8 +42,8 @@ class PutRoomUseCase implements UseCase<DataState<RoomEntity>, RoomEntity> {
   PutRoomUseCase(this._roomRepository);
 
   @override
-  Future<DataState<RoomEntity>> call({RoomEntity? params, int? id}) {
-    return _roomRepository.putRoom(newRoomEntity: params!, id: id!);
+  Future<DataState<RoomEntity>> call({RoomEntity? params, int? id, int? idPlace}) {
+    return _roomRepository.putRoom(newRoomEntity: params!, id: id!, idPlace: idPlace!);
   }
 }
 
@@ -42,7 +53,7 @@ class DeletRoomUseCase implements UseCase<DataState<String>, int> {
   DeletRoomUseCase(this._roomRepository);
 
   @override
-  Future<DataState<String>> call({int? params}) {
-    return _roomRepository.deletRoom(id: params!);
+  Future<DataState<String>> call({int? params, int? idPlace}) {
+    return _roomRepository.deletRoom(id: params!, idPlace: idPlace!);
   }
 }

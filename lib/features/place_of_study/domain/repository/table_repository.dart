@@ -3,13 +3,13 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/table_enti
 
 abstract class TableRepository {
   // API methods
-  Future<DataState<List<TableEntity>>> getTables({required int idRoom});
+  Future<DataState<List<TableEntity>>> getTables({required int idPlace});
 
   Future<DataState<TableEntity>> postTable(
-      {required TableEntity newTableEntity});
+      {required int idPlace,required TableEntity newTableEntity});
 
   Future<DataState<TableEntity>> putTable(
-      {required int id, required TableEntity newTableEntity});
+      {required int idPlace,required int id, required TableEntity newTableEntity});
 
-  Future<DataState<String>> deletTable({required int id});
+  Future<DataState<String>> deletTable({required int idPlace,required int id});
 }

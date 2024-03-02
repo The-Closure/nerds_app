@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'user_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: userAPIBaseURL)
 abstract class UserApiService {
   factory UserApiService(Dio dio) = _UserApiService;
 

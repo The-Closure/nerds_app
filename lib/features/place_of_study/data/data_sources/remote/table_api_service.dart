@@ -6,19 +6,19 @@ import 'package:retrofit/retrofit.dart';
 
 part 'table_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: tableAPIBaseURL)
 abstract class TableApiService {
   factory TableApiService(Dio dio) = _TableApiService;
 
-  @GET('/tables/findByRoomId/')
-  Future<HttpResponse<List<TableModel>>> getTables({required int idRoom});
-  @POST('path')
+  @GET('/1/AllTables')
+  Future<HttpResponse<List<TableModel>>> getTables({required int idPlace});
+  @POST('/1/newTable')
   Future<HttpResponse<TableModel>> postTable(
-      {@Body() required TableEntity newTableModel});
+      {required int idPlace,@Body() required TableEntity newTableModel});
 
-  @PUT('path')
+  @PUT('/1/update/1')
   Future<HttpResponse<TableModel>> putTable(
-      {@Query('') required int id,@Body() required TableEntity newTableModel});
-  @DELETE('path')
-  Future<HttpResponse<String>> deletTable({@Query('') required int id});
+      {required int idPlace,@Query('') required int id,@Body() required TableEntity newTableModel});
+  @DELETE('/delete/4')
+  Future<HttpResponse<String>> deletTable({required int idPlace,@Query('') required int id});
 }

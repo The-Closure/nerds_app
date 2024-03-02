@@ -14,7 +14,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1/table-category';
   }
 
   final Dio _dio;
@@ -22,7 +22,8 @@ class _TablesCategryApiService implements TablesCategryApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys() async {
+  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys(
+      {required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -35,7 +36,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              '/table-category/AllTables',
+              '/1/AllTables',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -53,8 +54,10 @@ class _TablesCategryApiService implements TablesCategryApiService {
   }
 
   @override
-  Future<HttpResponse<TablesCategryModel>> postTablesCategry(
-      {required TablesCategryEntity newTablesCategryModel}) async {
+  Future<HttpResponse<TablesCategryModel>> postTablesCategry({
+    required int idPlace,
+    required TablesCategryEntity newTablesCategryModel,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -68,7 +71,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/newTable',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -84,6 +87,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
 
   @override
   Future<HttpResponse<TablesCategryModel>> putTablesCategry({
+    required int idPlace,
     required int id,
     required TablesCategryEntity newTablesCategryModel,
   }) async {
@@ -100,7 +104,7 @@ class _TablesCategryApiService implements TablesCategryApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/update/1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -115,7 +119,10 @@ class _TablesCategryApiService implements TablesCategryApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletTablesCategry({required int id}) async {
+  Future<HttpResponse<String>> deletTablesCategry({
+    required int idPlace,
+    required int id,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

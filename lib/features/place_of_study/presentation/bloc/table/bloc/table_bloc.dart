@@ -23,7 +23,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   }
 
   void onGetTable(GetTables event, Emitter<TableState> emit) async {
-    final dataState = await _getTableUseCase(params: event.idRoom);
+    final dataState = await _getTableUseCase(params: event.idPlace);
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(TablesDoneState(dataState.data!));
@@ -35,7 +35,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
   }
 
    void onPostTable(PostTable event, Emitter<TableState> emit) async {
-    final dataState = await _postTableUseCase(params: event.tableEntity);
+    final dataState = await _postTableUseCase(idPlace: event.idPlace,params: event.tableEntity,);
 
     if (dataState is DataSuccess ) {
       emit(PostTablesDoneState(dataState.data!));
@@ -46,7 +46,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     }
   }
    void onPutTable(PutTable event, Emitter<TableState> emit) async {
-    final dataState = await _putTableUseCase();
+    final dataState = await _putTableUseCase(id:event.id ,params: event.tableEntity, idPlace: event.idPlace);
 
     if (dataState is DataSuccess ) {
       emit(PutTablesDoneState(dataState.data!));
@@ -57,7 +57,7 @@ class TableBloc extends Bloc<TableEvent, TableState> {
     }
   }
    void onDeletTable(DeletTable event, Emitter<TableState> emit) async {
-    final dataState = await _deletTableUseCase();
+    final dataState = await _deletTableUseCase(params: event.id,idPlace:event.idPlace ,);
 
     if (dataState is DataSuccess ) {
       emit(DeletTablesDoneState(dataState.data!));

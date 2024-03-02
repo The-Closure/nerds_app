@@ -3,13 +3,13 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/tables_cat
 
 abstract class TablesCategryRepository {
   // API methods
-  Future<DataState<List<TablesCategryEntity>>> getTablesCategrys();
+  Future<DataState<List<TablesCategryEntity>>> getTablesCategrys({required int idPlace});
 
   Future<DataState<TablesCategryEntity>> postTablesCategry(
-      {required TablesCategryEntity newTablesCategryEntity});
+      {required int idPlace,required TablesCategryEntity newTablesCategryEntity});
 
   Future<DataState<TablesCategryEntity>> putTablesCategry(
-      {required int id, required TablesCategryEntity newTablesCategryEntity});
+      {required int idPlace,required int id, required TablesCategryEntity newTablesCategryEntity});
 
-  Future<DataState<String>> deletTablesCategry({required int id});
+  Future<DataState<String>> deletTablesCategry({required int idPlace,required int id});
 }

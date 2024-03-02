@@ -16,12 +16,12 @@ class TablesCategryBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
     on<PostTablesCategry>(onPostTablesCategry);
 
     on<PutTablesCategry>(onPutTablesCategry);
-    
+
     on<DeletTablesCategry>(onDeletTablesCategry);
   }
 
   void onGetTablesCategry(GetTablesCategrys event, Emitter<TablesCategryState> emit) async {
-    final dataState = await _getTablesCategryUseCase();
+    final dataState = await _getTablesCategryUseCase(params:event.idPlace);
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
       emit(TablesCategrysDoneState(dataState.data!));
@@ -33,7 +33,7 @@ class TablesCategryBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
   }
 
    void onPostTablesCategry(PostTablesCategry event, Emitter<TablesCategryState> emit) async {
-    final dataState = await _postTablesCategryUseCase(params: event.tablesCategryEntity);
+    final dataState = await _postTablesCategryUseCase(idPlace: event.idPlace,params: event.tablesCategryEntity);
 
     if (dataState is DataSuccess ) {
       emit(PostTablesCategrysDoneState(dataState.data!));
@@ -44,7 +44,7 @@ class TablesCategryBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
     }
   }
    void onPutTablesCategry(PutTablesCategry event, Emitter<TablesCategryState> emit) async {
-    final dataState = await _putTablesCategryUseCase();
+    final dataState = await _putTablesCategryUseCase(id:event.id ,params: event.tablesCategryEntity, idPlace: event.idPlace);
 
     if (dataState is DataSuccess ) {
       emit(PutTablesCategrysDoneState(dataState.data!));
@@ -55,7 +55,7 @@ class TablesCategryBloc extends Bloc<TablesCategryEvent, TablesCategryState> {
     }
   }
    void onDeletTablesCategry(DeletTablesCategry event, Emitter<TablesCategryState> emit) async {
-    final dataState = await _deletTablesCategryUseCase();
+    final dataState = await _deletTablesCategryUseCase(params: event.id,idPlace:event.idPlace );
 
     if (dataState is DataSuccess ) {
       emit(DeletTablesCategrysDoneState(dataState.data!));

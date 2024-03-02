@@ -4,14 +4,14 @@ import 'package:dashbord_cafe/features/place_of_study/domain/entities/tables_cat
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/tables_categry_repository.dart';
 
 class GetTablesCategryUseCase
-    implements UseCase<DataState<List<TablesCategryEntity>>, void> {
+    implements UseCase<DataState<List<TablesCategryEntity>>, int> {
   final TablesCategryRepository _tablesCategryRepository;
 
   GetTablesCategryUseCase(this._tablesCategryRepository);
 
   @override
-  Future<DataState<List<TablesCategryEntity>>> call({void params}) {
-    return _tablesCategryRepository.getTablesCategrys();
+  Future<DataState<List<TablesCategryEntity>>> call({int? params}) {
+    return _tablesCategryRepository.getTablesCategrys(idPlace: params!);
   }
 }
 
@@ -22,9 +22,9 @@ class PostTablesCategryUseCase
   PostTablesCategryUseCase(this._tablesCategryRepository);
 
   @override
-  Future<DataState<TablesCategryEntity>> call({TablesCategryEntity? params}) {
+  Future<DataState<TablesCategryEntity>> call({TablesCategryEntity? params, int? idPlace}) {
     return _tablesCategryRepository.postTablesCategry(
-        newTablesCategryEntity: params!);
+        newTablesCategryEntity: params!, idPlace: idPlace!);
   }
 }
 
@@ -36,9 +36,9 @@ class PutTablesCategryUseCase
 
   @override
   Future<DataState<TablesCategryEntity>> call(
-      {TablesCategryEntity? params, int? id}) {
+      {TablesCategryEntity? params, int? id, int? idPlace}) {
     return _tablesCategryRepository.putTablesCategry(
-        newTablesCategryEntity: params!, id: id!);
+        newTablesCategryEntity: params!, id: id!, idPlace: idPlace!);
   }
 }
 
@@ -48,7 +48,7 @@ class DeletTablesCategryUseCase implements UseCase<DataState<String>, int> {
   DeletTablesCategryUseCase(this._tablesCategryRepository);
 
   @override
-  Future<DataState<String>> call({int? params}) {
-    return _tablesCategryRepository.deletTablesCategry(id: params!);
+  Future<DataState<String>> call({int? params, int? idPlace}) {
+    return _tablesCategryRepository.deletTablesCategry(id: params!, idPlace: idPlace!);
   }
 }

@@ -11,7 +11,7 @@ class GetRoomsCategryUseCase
 
   @override
   Future<DataState<List<RoomsCategryEntity>>> call({int? params}) {
-    return _roomsCategryRepository.getRoomsCategrys(idPlace: params??1);
+    return _roomsCategryRepository.getRoomsCategrys(idPlace: params!);
   }
 }
 
@@ -22,9 +22,9 @@ class PostRoomsCategryUseCase
   PostRoomsCategryUseCase(this._roomsCategryRepository);
 
   @override
-  Future<DataState<RoomsCategryEntity>> call({RoomsCategryEntity? params}) {
+  Future<DataState<RoomsCategryEntity>> call({RoomsCategryEntity? params, int? idPlace}) {
     return _roomsCategryRepository.postRoomsCategry(
-        newRoomsCategryEntity: params!);
+        newRoomsCategryEntity: params!, idPlace: idPlace!);
   }
 }
 
@@ -36,9 +36,9 @@ class PutRoomsCategryUseCase
 
   @override
   Future<DataState<RoomsCategryEntity>> call(
-      {RoomsCategryEntity? params, int? id}) {
+      {RoomsCategryEntity? params, int? id, int? idPlace}) {
     return _roomsCategryRepository.putRoomsCategry(
-        newRoomsCategryEntity: params!, id: id!);
+        newRoomsCategryEntity: params!, id: id!, idPlace: idPlace!);
   }
 }
 
@@ -48,7 +48,7 @@ class DeletRoomsCategryUseCase implements UseCase<DataState<String>, int> {
   DeletRoomsCategryUseCase(this._roomsCategryRepository);
 
   @override
-  Future<DataState<String>> call({int? params}) {
-    return _roomsCategryRepository.deletRoomsCategry(id: params!);
+  Future<DataState<String>> call({int? params, int? idPlace}) {
+    return _roomsCategryRepository.deletRoomsCategry(id: params!, idPlace: idPlace!);
   }
 }

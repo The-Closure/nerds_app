@@ -35,7 +35,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/1/AllRooms',
+              '/3/AllRooms',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -52,8 +52,43 @@ class _RoomApiService implements RoomApiService {
   }
 
   @override
-  Future<HttpResponse<RoomModel>> postRoom(
-      {required RoomEntity newRoomModel}) async {
+  Future<HttpResponse<List<RoomModel>>> getRoomsByCategry({
+    required int idPlace,
+    required int idCategry,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<RoomModel>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/3/AllRooms',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => RoomModel.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<RoomModel>> postRoom({
+    required int idPlace,
+    required RoomEntity newRoomModel,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -67,7 +102,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/2/newRoom',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -83,6 +118,7 @@ class _RoomApiService implements RoomApiService {
 
   @override
   Future<HttpResponse<RoomModel>> putRoom({
+    required int idPlace,
     required int id,
     required RoomEntity newRoomModel,
   }) async {
@@ -99,7 +135,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/update/2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -114,7 +150,10 @@ class _RoomApiService implements RoomApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletRoom({required int id}) async {
+  Future<HttpResponse<String>> deletRoom({
+    required int idPlace,
+    required int id,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
@@ -127,7 +166,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/delete/2',
               queryParameters: queryParameters,
               data: _data,
             )

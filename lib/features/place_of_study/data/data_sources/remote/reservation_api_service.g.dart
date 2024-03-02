@@ -14,7 +14,7 @@ class _ReservationApiService implements ReservationApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1/reservation';
   }
 
   final Dio _dio;
@@ -35,7 +35,7 @@ class _ReservationApiService implements ReservationApiService {
     )
             .compose(
               _dio.options,
-              '/reservation/getAll',
+              '/getAll',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -128,7 +128,7 @@ class _ReservationApiService implements ReservationApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/cancelReservation/1',
               queryParameters: queryParameters,
               data: _data,
             )

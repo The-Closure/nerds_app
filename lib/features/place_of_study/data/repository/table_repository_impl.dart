@@ -15,9 +15,9 @@ class TableRepositoryImpl implements TableRepository {
   );
 
   @override
-  Future<DataState<List<TableModel>>> getTables({required int idRoom}) async {
+  Future<DataState<List<TableModel>>> getTables({required int idPlace}) async {
     try {
-      final httpResponse = await _tableApiService.getTables(idRoom: idRoom);
+      final httpResponse = await _tableApiService.getTables(idPlace: idPlace);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -35,10 +35,10 @@ class TableRepositoryImpl implements TableRepository {
 
   @override
   Future<DataState<TableModel>> postTable(
-      {required TableEntity newTableEntity}) async {
+      {required int idPlace,required TableEntity newTableEntity}) async {
     try {
       final httpResponse =
-          await _tableApiService.postTable(newTableModel: newTableEntity);
+          await _tableApiService.postTable(idPlace: idPlace,newTableModel: newTableEntity);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -56,10 +56,10 @@ class TableRepositoryImpl implements TableRepository {
 
   @override
   Future<DataState<TableEntity>> putTable(
-      {required int id, required TableEntity newTableEntity}) async{
+      {required int idPlace,required int id, required TableEntity newTableEntity}) async{
     try {
       final httpResponse =
-          await _tableApiService.putTable(newTableModel: newTableEntity, id: id);
+          await _tableApiService.putTable(idPlace: idPlace,newTableModel: newTableEntity, id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -76,9 +76,9 @@ class TableRepositoryImpl implements TableRepository {
   }
 
   @override
-  Future<DataState<String>> deletTable({required int id}) async {
+  Future<DataState<String>> deletTable({required int idPlace,required int id}) async {
     try {
-      final httpResponse = await _tableApiService.deletTable(id: id);
+      final httpResponse = await _tableApiService.deletTable(idPlace: idPlace,id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data );

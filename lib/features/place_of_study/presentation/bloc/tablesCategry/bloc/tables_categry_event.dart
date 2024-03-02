@@ -7,25 +7,29 @@ abstract class TablesCategryEvent {
 }
 
 class GetTablesCategrys extends TablesCategryEvent {
-  const GetTablesCategrys();
+  int idPlace;
+   GetTablesCategrys({required this.idPlace,});
 }
 
 
 class PostTablesCategry extends TablesCategryEvent {
+  int idPlace;
   TablesCategryEntity tablesCategryEntity;
-   PostTablesCategry({
+   PostTablesCategry({required this.idPlace,
     required this.tablesCategryEntity,
   });
 }
 
 
 class PutTablesCategry extends TablesCategryEvent {
+  int idPlace;
   TablesCategryEntity tablesCategryEntity;
   int id;
-   PutTablesCategry({required this.tablesCategryEntity,required this.id});
+   PutTablesCategry({required this.idPlace,required this.tablesCategryEntity,required this.id});
 }
 class DeletTablesCategry extends TablesCategryEvent {
   int id;
+  int idPlace;
 
-   DeletTablesCategry({required this.id});
+   DeletTablesCategry({required this.idPlace,required this.id});
 }

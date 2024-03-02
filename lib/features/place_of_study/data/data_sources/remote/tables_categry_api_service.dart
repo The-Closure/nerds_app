@@ -6,19 +6,19 @@ import 'package:retrofit/retrofit.dart';
 
 part 'tables_categry_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: tablesCategryAPIBaseURL)
 abstract class TablesCategryApiService {
   factory TablesCategryApiService(Dio dio) = _TablesCategryApiService;
 
-  @GET('/table-category/AllTables')
-  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys();
-  @POST('path')
+  @GET('/1/AllTables')
+  Future<HttpResponse<List<TablesCategryModel>>> getTablesCategrys({required int idPlace,});
+  @POST('/1/newTable')
   Future<HttpResponse<TablesCategryModel>> postTablesCategry(
-      {@Body() required TablesCategryEntity newTablesCategryModel});
+      {required int idPlace,@Body() required TablesCategryEntity newTablesCategryModel});
 
-  @PUT('path')
+  @PUT('/1/update/1')
   Future<HttpResponse<TablesCategryModel>> putTablesCategry(
-      {@Query('') required int id,@Body() required TablesCategryEntity newTablesCategryModel});
+      {required int idPlace,@Query('') required int id,@Body() required TablesCategryEntity newTablesCategryModel});
   @DELETE('path')
-  Future<HttpResponse<String>> deletTablesCategry({@Body() required int id});
+  Future<HttpResponse<String>> deletTablesCategry({required int idPlace,@Body() required int id});
 }

@@ -6,20 +6,20 @@ import 'package:retrofit/retrofit.dart';
 
 part 'place_api_service.g.dart';
 
-@RestApi(baseUrl: aPIBaseURL)
+@RestApi(baseUrl: placeAPIBaseURL)
 abstract class PlaceApiService {
   factory PlaceApiService(Dio dio) = _PlaceApiService;
 
-  @GET('/places/allplaces')
+  @GET('/allplaces')
   Future<HttpResponse<List<PlaceModel>>> getPlaces();
 
-  @POST('/places/newplace')
+  @POST('/newplace')
   Future<HttpResponse<PlaceModel>> postPlace(
       {@Body() required PlaceEntity newPlaceModel});
 
-  @PUT('/places/edit/')
+  @PUT('/edit/1')
   Future<HttpResponse<PlaceModel>> putPlace(
-      {@Header('')required int id, @Body() required PlaceEntity newPlaceModel});
-  @DELETE('/places/delete/')
-  Future<HttpResponse<String>> deletPlace({@Header('')required int id});
+      {@Query('') required int id, @Body() required PlaceEntity newPlaceModel});
+  @DELETE('/delete/1')
+  Future<HttpResponse<String>> deletPlace({@Query('') required int id});
 }

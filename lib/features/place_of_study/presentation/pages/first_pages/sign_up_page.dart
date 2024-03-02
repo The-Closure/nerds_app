@@ -132,8 +132,8 @@ class _PageSignupState extends State<PageSignup> {
                                     obscureText = !obscureText;
                                   });
                                 },
-                                child: Icon(Icons.remove_red_eye_sharp)),
-                            label: Text('Password'),
+                                child: const Icon(Icons.remove_red_eye_sharp)),
+                            label: const Text('Password'),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12))),
                       ),
@@ -157,8 +157,8 @@ class _PageSignupState extends State<PageSignup> {
                                     obscureText = !obscureText;
                                   });
                                 },
-                                child: Icon(Icons.remove_red_eye_sharp)),
-                            label: Text('Password'),
+                                child: const Icon(Icons.remove_red_eye_sharp)),
+                            label: const Text('Password'),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12))),
                       ),
@@ -166,7 +166,7 @@ class _PageSignupState extends State<PageSignup> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               SizedBox(
@@ -189,10 +189,10 @@ class _PageSignupState extends State<PageSignup> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color(0xffF05984),
+                        color: const Color(0xffF05984),
                         width: 1,
                       ),
-                      color: Color(0xffF05984),
+                      color: const Color(0xffF05984),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     width: 311,

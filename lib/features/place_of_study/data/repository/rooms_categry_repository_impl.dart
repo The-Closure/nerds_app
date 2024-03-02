@@ -17,7 +17,7 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
   @override
   Future<DataState<List<RoomsCategryModel>>> getRoomsCategrys({required int idPlace}) async {
     try {
-      final httpResponse = await _roomsCategryApiService.getRoomsCategrys();
+      final httpResponse = await _roomsCategryApiService.getRoomsCategrys(idPlace: idPlace,);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -35,10 +35,10 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
 
   @override
   Future<DataState<RoomsCategryModel>> postRoomsCategry(
-      {required RoomsCategryEntity newRoomsCategryEntity}) async {
+      {required int idPlace,required RoomsCategryEntity newRoomsCategryEntity}) async {
     try {
       final httpResponse =
-          await _roomsCategryApiService.postRoomsCategry(newRoomsCategryModel: newRoomsCategryEntity);
+          await _roomsCategryApiService.postRoomsCategry(idPlace: idPlace,newRoomsCategryModel: newRoomsCategryEntity);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -56,10 +56,10 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
 
   @override
   Future<DataState<RoomsCategryEntity>> putRoomsCategry(
-      {required int id, required RoomsCategryEntity newRoomsCategryEntity}) async{
+      {required int idPlace,required int id, required RoomsCategryEntity newRoomsCategryEntity}) async{
     try {
       final httpResponse =
-          await _roomsCategryApiService.putRoomsCategry(newRoomsCategryModel: newRoomsCategryEntity, id: id);
+          await _roomsCategryApiService.putRoomsCategry(idPlace: idPlace,newRoomsCategryModel: newRoomsCategryEntity, id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -76,9 +76,9 @@ class RoomsCategryRepositoryImpl implements RoomsCategryRepository {
   }
 
   @override
-  Future<DataState<String>> deletRoomsCategry({required int id}) async {
+  Future<DataState<String>> deletRoomsCategry({required int idPlace,required int id}) async {
     try {
-      final httpResponse = await _roomsCategryApiService.deletRoomsCategry(id: id);
+      final httpResponse = await _roomsCategryApiService.deletRoomsCategry(idPlace: idPlace,id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data );

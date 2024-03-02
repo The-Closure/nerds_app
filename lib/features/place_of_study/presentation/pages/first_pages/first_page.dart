@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:dashbord_cafe/core/constants/font.dart';
+
 import 'login_page.dart';
 
 import 'package:flutter/material.dart';
@@ -28,15 +30,15 @@ class PageFirst extends StatelessWidget {
               height: height * 4 / 10,
               child: Align(
                 alignment: Alignment.center,
-                child: Text.rich(TextSpan(children: const [
+                child: Text.rich(TextSpan(children:  [
                   TextSpan(
                     text: 'LOOKING FOR A COZY STUDY SPOT\n',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+                    style: AppTextStyle().TextStyle1(),
                   ),
                   TextSpan(
                     text:
                         '\nCOSEL creates studying spaces that help students go further, faster by building a positive community dreaming of a better tomorrow.',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    style: AppTextStyle().TextStyle2(),
                   ),
                 ])),
               ),
@@ -64,10 +66,7 @@ class PageFirst extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Login',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
+                    style: AppTextStyle().TextStyle3(),
                   ),
                 ),
               ),

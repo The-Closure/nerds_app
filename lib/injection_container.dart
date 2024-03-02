@@ -1,27 +1,22 @@
 import 'package:dashbord_cafe/config/theme/bloc/theme_app_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/place_api_service.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/reservation_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/room_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/rooms_categry_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/table_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/data_sources/remote/tables_categry_api_service.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/repository/place_repository_impl.dart';
-import 'package:dashbord_cafe/features/place_of_study/data/repository/reservation_repository_impl.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/repository/rooms_categry_repository_impl.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/repository/table_repository_impl.dart';
 import 'package:dashbord_cafe/features/place_of_study/data/repository/tables_categry_repository_impl.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/place_repository.dart';
-import 'package:dashbord_cafe/features/place_of_study/domain/repository/reservation_repository.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/rooms_categry_repository.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/table_repository.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/repository/tables_categry_repository.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/usecases/places.dart';
-import 'package:dashbord_cafe/features/place_of_study/domain/usecases/reservation.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/usecases/room.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/usecases/rooms_gategry.dart';
 import 'package:dashbord_cafe/features/place_of_study/domain/usecases/tables_categry.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_bloc.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/reservattion/bloc/reservation_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/room/bloc/room_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/roomsCategry/bloc/rooms_categry_bloc.dart';
 import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/tablesCategry/bloc/tables_categry_bloc.dart';
@@ -70,6 +65,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<DeletPlaceUseCase>(DeletPlaceUseCase(sl()));
 
   sl.registerSingleton<GetRoomUseCase>(GetRoomUseCase(sl()));
+  sl.registerSingleton<GetRoomByCategryUseCase>(GetRoomByCategryUseCase(sl()));
   sl.registerSingleton<PostRoomUseCase>(PostRoomUseCase(sl()));
   sl.registerSingleton<PutRoomUseCase>(PutRoomUseCase(sl()));
   sl.registerSingleton<DeletRoomUseCase>(DeletRoomUseCase(sl()));
@@ -112,7 +108,7 @@ Future<void> initializeDependencies() async {
   sl.registerFactory<PlaceOfCafesBloc>(
       () => PlaceOfCafesBloc(sl(), sl(), sl(), sl()));
   sl.registerFactory<RoomOfCafesBloc>(
-      () => RoomOfCafesBloc(sl(), sl(), sl(), sl()));
+      () => RoomOfCafesBloc(sl(), sl(), sl(), sl(),sl(),));
   // sl.registerFactory<ReservationBloc>(
   //     () => ReservationBloc(sl(), sl(), sl(), sl()));
   sl.registerFactory<TableBloc>(() => TableBloc(sl(), sl(), sl(), sl()));

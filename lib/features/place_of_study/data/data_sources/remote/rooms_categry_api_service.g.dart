@@ -14,7 +14,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     this.baseUrl,
   }) {
     baseUrl ??=
-        'https://place-admininstration-spring-system-1.onrender.com/api/v1';
+        'https://place-admininstration-spring-system-1.onrender.com/api/v1/roomCategories';
   }
 
   final Dio _dio;
@@ -22,7 +22,8 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<RoomsCategryModel>>> getRoomsCategrys() async {
+  Future<HttpResponse<List<RoomsCategryModel>>> getRoomsCategrys(
+      {required int idPlace}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -35,7 +36,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              '/roomCategories/1/allRoomCategories',
+              '/1/allRoomCategories',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -53,8 +54,10 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   }
 
   @override
-  Future<HttpResponse<RoomsCategryModel>> postRoomsCategry(
-      {required RoomsCategryEntity newRoomsCategryModel}) async {
+  Future<HttpResponse<RoomsCategryModel>> postRoomsCategry({
+    required int idPlace,
+    required RoomsCategryEntity newRoomsCategryModel,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -68,7 +71,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/newRoomCategory',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -84,6 +87,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
 
   @override
   Future<HttpResponse<RoomsCategryModel>> putRoomsCategry({
+    required int idPlace,
     required int id,
     required RoomsCategryEntity newRoomsCategryModel,
   }) async {
@@ -100,7 +104,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/update/1',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -115,7 +119,10 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
   }
 
   @override
-  Future<HttpResponse<String>> deletRoomsCategry({required int id}) async {
+  Future<HttpResponse<String>> deletRoomsCategry({
+    required int idPlace,
+    required int id,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'': id};
     final _headers = <String, dynamic>{};
@@ -128,7 +135,7 @@ class _RoomsCategryApiService implements RoomsCategryApiService {
     )
             .compose(
               _dio.options,
-              'path',
+              '/1/delete/6',
               queryParameters: queryParameters,
               data: _data,
             )

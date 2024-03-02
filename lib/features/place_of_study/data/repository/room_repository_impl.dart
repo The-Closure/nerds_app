@@ -33,12 +33,32 @@ class RoomRepositoryImpl implements RoomRepository {
     }
   }
 
+
+   @override
+  Future<DataState<List<RoomModel>>> getRoomsByCategry({required int idPlace,required int idCategry}) async {
+    try {
+      final httpResponse = await _roomApiService.getRoomsByCategry(idPlace:idPlace, idCategry: idCategry );
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      } else {
+        return DataFailed(DioException(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            type: DioExceptionType.badResponse,
+            requestOptions: httpResponse.response.requestOptions));
+      }
+    } on DioException catch (e) {
+      return DataFailed(e);
+    }
+  }
+
   @override
   Future<DataState<RoomEntity>> postRoom(
-      {required RoomEntity newRoomEntity}) async {
+      {required int idPlace,required RoomEntity newRoomEntity}) async {
     try {
       final httpResponse =
-          await _roomApiService.postRoom(newRoomModel: newRoomEntity);
+          await _roomApiService.postRoom(newRoomModel: newRoomEntity, idPlace: idPlace,);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -56,10 +76,10 @@ class RoomRepositoryImpl implements RoomRepository {
 
   @override
   Future<DataState<RoomEntity>> putRoom(
-      {required int id, required RoomEntity newRoomEntity}) async{
+      {required int idPlace,required int id, required RoomEntity newRoomEntity}) async{
     try {
       final httpResponse =
-          await _roomApiService.putRoom(newRoomModel: newRoomEntity, id: id);
+          await _roomApiService.putRoom(idPlace: idPlace,newRoomModel: newRoomEntity, id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -76,9 +96,9 @@ class RoomRepositoryImpl implements RoomRepository {
   }
 
   @override
-  Future<DataState<String>> deletRoom({required int id}) async {
+  Future<DataState<String>> deletRoom({required int idPlace,required int id}) async {
     try {
-      final httpResponse = await _roomApiService.deletRoom(id: id);
+      final httpResponse = await _roomApiService.deletRoom(idPlace: idPlace,id: id);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data );

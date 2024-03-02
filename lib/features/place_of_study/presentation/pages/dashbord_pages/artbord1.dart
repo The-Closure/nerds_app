@@ -1,222 +1,86 @@
+// ignore_for_file: constant_identifier_names
 
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_bloc.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_event.dart';
-import 'package:dashbord_cafe/features/place_of_study/presentation/bloc/place/bloc/place_of_cafes_state.dart';
+import 'package:dashbord_cafe/core/constants/font.dart';
+import 'package:dashbord_cafe/features/place_of_study/presentation/widgets/my_botton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../injection_container.dart';
-
-
-
-List<Widget> pages = [Reservations(), Scaffold(), Scaffold()];
-int selectedIndix = 1;
-
-class InfoPage extends StatelessWidget {
-  InfoPage({super.key});
-
-  void initState() {}
+import '../../../../../core/constants/constants.dart';
+import 'artbord2.dart';
+class Artbord1 extends StatelessWidget {
+  const Artbord1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<PlaceOfCafesBloc>(),
-      child: BlocConsumer<PlaceOfCafesBloc, PlaceOfCafesState>(
-        listener: (context, state) {
-          // if (state is PlacesDoneState) {
-          //   selectedIndix = state.toString();
-          // }
-          // if (state is SuccessToLoadInfoData) {
-          //   currentCenter = state.center;
-          // }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: pages[selectedIndix],
-            bottomNavigationBar: NavigationBar(
-              animationDuration: Duration(seconds: 3),
-              elevation: 50,
-              labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-              indicatorColor: Colors.white,
-              backgroundColor: Colors.black,
-              selectedIndex: selectedIndix,
-              onDestinationSelected: (value) {
-                context
-                    .read<PlaceOfCafesBloc>()
-                    .add(const GetPlaces());
-              },
-              destinations: [
-                NavigationDestination(
-                  icon: Icon(
-                    Icons.article_outlined,
-                    color: Colors.white,
-                  ),
-                  label: 'Reservations',
-                ),
-                NavigationDestination(
-                    icon: Icon(Icons.home_filled, color: Colors.white),
-                    label: 'Home'),
-                NavigationDestination(
-                    icon: Icon(Icons.holiday_village_outlined,
-                        color: Colors.white),
-                    label: 'Halls'),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class Reservations extends StatelessWidget {
-  const Reservations({super.key});
-
-  @override
-  Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 246, 255, 1),
-      body: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Column(
-              children: [
-                SizedBox(
-                  height: 15,
-                ),
-                Icon(
-                  Icons.article_outlined,
-                  color: Colors.white,
-                  size: 50,
-                ),
-              ],
+      backgroundColor: const Color.fromARGB(255, 83, 102, 246),
+      body: Column(children: [
+        Container(
+          width: width,
+          height: height * 4.5 / 10,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage('assets/images/dashbord.png'),
             ),
-            centerTitle: true,
-            backgroundColor: Colors.amber,
-            bottom: TabBar(indicatorColor: Colors.white, tabs: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  'Busy',
-                  style: TextStyle(color: Colors.white),
+          ),
+        ),
+        Container(
+          width: width,
+          height: height * 5.5 / 10,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(40),
+              topLeft: Radius.circular(40),
+            ),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 3,
+                width: 30,
+                color: const Color.fromARGB(255, 83, 102, 246),
+              ),
+              Text.rich(
+                textAlign: TextAlign.center,
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: '\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tOngoing\n\n',
+                        style: AppTextStyle().TextStyle1()),
+                    TextSpan(
+                        text: 'Buliding Better \nWorkplaces\n',
+                        style: AppTextStyle().TextStyle1()),
+                    const TextSpan(
+                      text:
+                          'Create a unigue ernotional story that\ndescribes better than words',
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  'Reserved',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
-            ]),
+              const SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (contaxt) => const Artbord2()));
+                  },
+                  child: const MyBotton(
+                      text: 'Get Strrted',
+                      colorBotton: Color.fromARGB(255, 83, 102, 246),
+                      colortext: Colors.white))
+            ],
           ),
-          body: TabBarView(children: [Busy(), Reserved()]),
         ),
-      ),
-    );
-  }
-}
-
-class Reserved extends StatelessWidget {
-  const Reserved({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Builder(
-        builder: (context) {
-          int reservedCount = 1;
-
-          return ListView.builder(
-            itemCount: reservedCount,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient:
-                            LinearGradient(colors: [Colors.black, Colors.blue])),
-                    child: ListTile(
-                        title: Text('Table: 1'),
-                        subtitle: Text('customer'),
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Text(
-                            'room',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.grey.shade100,
-                          ),
-                        )),
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-class Busy extends StatelessWidget {
-  const Busy({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Builder(
-        builder: (context) {
-          int reservedCount = 1;
-
-          return ListView.builder(
-            itemCount: reservedCount,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient:
-                            LinearGradient(colors: [Colors.black, Colors.blue])),
-                    child: ListTile(
-                        title: Text('Table: 1'),
-                        subtitle: Text('customer'),
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Text(
-                            'room',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        trailing: InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.grey.shade100,
-                          ),
-                        )),
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
+      ]),
     );
   }
 }
