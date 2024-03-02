@@ -8,7 +8,7 @@ class TableEntity extends Equatable {
   final int? status;
   final int? category_id;
   final int? room_id;
-  final List<dynamic>? available_seats;
+  final int? available_seats;
   final String? message;
   const TableEntity({
     this.id,
@@ -48,7 +48,7 @@ class TableEntity extends Equatable {
       status: map['status'] != null ? map['status'] as int : null,
       category_id: map['category_id'] != null ? map['category_id'] as int : null,
       room_id: map['room_id'] != null ? map['room_id'] as int : null,
-      available_seats: map['available_seats'] != null ? List<dynamic>.from((map['available_seats'] as List<dynamic>)) : null,
+      available_seats: map['available_seats'] != null ? map['available_seats'] as int : null,
       message: map['message'] != null ? map['message'] as String : null,
     );
   }

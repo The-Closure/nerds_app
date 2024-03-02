@@ -68,7 +68,7 @@ class _RoomApiService implements RoomApiService {
     )
             .compose(
               _dio.options,
-              '/3/AllRooms',
+              '/1/showByCategory/1',
               queryParameters: queryParameters,
               data: _data,
             )

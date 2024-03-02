@@ -74,7 +74,7 @@ class TableWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  table.category_id.toString(),
+                  table.available_seats.toString(),
                   maxLines: 2,
                 ),
               ),

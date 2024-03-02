@@ -13,7 +13,7 @@ abstract class RoomApiService {
   @GET('/3/AllRooms')
   Future<HttpResponse<List<RoomModel>>> getRooms({required int idPlace});
 
-  @GET('/3/AllRooms')
+  @GET('/1/showByCategory/1')
   Future<HttpResponse<List<RoomModel>>> getRoomsByCategry({required int idPlace,required int idCategry});
 
   @POST('/2/newRoom')

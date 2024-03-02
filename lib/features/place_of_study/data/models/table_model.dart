@@ -9,7 +9,7 @@ class TableModel extends TableEntity {
     int? status,
     int? category_id,
     int? room_id,
-    List<dynamic>? available_seats,
+    int? available_seats,
     String? message,
   }) : super(
             id: id,
@@ -27,7 +27,7 @@ class TableModel extends TableEntity {
           map['category_id'] != null ? map['category_id'] as int : null,
       room_id: map['room_id'] != null ? map['room_id'] as int : null,
       available_seats: map['available_seats'] != null
-          ? List<dynamic>.from((map['available_seats'] as List<dynamic>))
+          ?  map['available_seats'] as int
           : null,
       message: map['message'] != null ? map['message'] as String : null,
     );

@@ -32,7 +32,7 @@ class TablePage extends StatelessWidget {
               if (state is TablesDoneState) {
                 List<TableEntity> TablesByCategry = [];
                 for (var element in state.tables!) {
-                  if (element.category_id == idCategry) {
+                  if (element.available_seats == idCategry) {
                     TablesByCategry.add(element);
                   }
                 }
